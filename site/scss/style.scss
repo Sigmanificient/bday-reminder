@@ -5,34 +5,43 @@ $white: white;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-body {
+main {
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
 
   & > section {
-    height: 100vh;
     display: grid;
     place-content: center;
+    padding: 0 50px;
+
+    @media (min-width: 1200px) {
+      height: 100vh;
+    }
   }
 }
 
 .left {
-
   color: $color-primary-700;
   background: radial-gradient(ellipse at top right, $color-secondary-400, $color-primary-400);
   text-align: right;
-  border-right: 8px solid $white;
-  padding-right: 25px;
 
-  .title {
-    font-size: 48px;
+  @media (min-width: 1200px) {
+    border-right: 8px solid $white;
   }
 
   h2 {
+    font-size: 32px;
+
     strong {
+      font-size: 36px;
+      letter-spacing: 6px;
       text-transform: uppercase;
       color: $white;
     }
@@ -42,6 +51,9 @@ body {
 .right {
   color: $white;
   background-color: $color-primary-400;
-  padding-left: 25px;
+  text-align: left;
 }
 
+h1 {
+  font-size: 48px;
+}
