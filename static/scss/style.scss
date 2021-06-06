@@ -13,7 +13,13 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: 16px;
+
+  font-size: clamp(12px, 3vw, 16px);
+
+  @media (min-width: 620px) {
+    font-size: 16px;
+  }
+
   height: 100vh;
 }
 
@@ -44,16 +50,17 @@ main {
   & > section {
     display: grid;
     place-content: center;
-    border-bottom: 8px solid $white;
-    padding: 50px;
+    padding: clamp(20px, 6vw, 50px);
   }
 }
 
 .left {
   color: $color-primary-700;
   background: radial-gradient(ellipse at top right, $color-secondary-400, $color-primary-400);
+  border-bottom: 8px solid $white;
 
   @media (min-width: 1200px) {
+    border-bottom: none;
     border-right: 8px solid $white;
     text-align: right;
   }
@@ -74,6 +81,10 @@ main {
   color: $white;
   background-color: $color-primary-400;
   text-align: left;
+}
+
+.wrapper {
+  margin: 20px 0;
 }
 
 h1 {
@@ -145,7 +156,6 @@ form#search {
   color: $color-primary-700;
   background-color: $white;
   border-radius: 25px;
-  padding: 50px;
 
   p {
     max-width: 75ch;
@@ -161,7 +171,9 @@ footer {
   display: flex;
   justify-content: flex-end;
 
-  section {
+  .authors {
+    display: flex;
+    align-items: center;
     text-align: right;
     padding-right: 20px;
     margin-right: 20px;
