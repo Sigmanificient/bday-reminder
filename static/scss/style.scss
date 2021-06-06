@@ -9,11 +9,22 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
+  height: 100vh;
 }
 
+header {
+  top: 20px;
+  right: 20px;
+  position: fixed;
+
+  nav {
+    display: flex;
+  }
+}
 
 main {
   display: grid;
+  height: 100vh;
 
   @media (min-width: 1200px) {
     grid-template-columns: 1fr 1fr;
@@ -33,10 +44,14 @@ main {
 .left {
   color: $color-primary-700;
   background: radial-gradient(ellipse at top right, $color-secondary-400, $color-primary-400);
-  text-align: right;
 
   @media (min-width: 1200px) {
     border-right: 8px solid $white;
+    text-align: right;
+  }
+
+  @media (max-width: 1200px) {
+    border-bottom: 8px solid $white;
   }
 
   h2 {
@@ -70,19 +85,51 @@ a {
     background-color: $white;
     padding: 10px 20px;
   }
+
+  &#add {
+    padding: 10px 20px;
+  }
+
+  &.github {
+    text-shadow: 0 0 10px rgba(100, 255, 100, 0.9);
+    color: $color-secondary-400;
+  }
 }
 
-header {
-  top: 20px;
-  right: 20px;
-  position: fixed;
+form#search {
+  display: flex;
+  max-width: 400px;
 
-  nav {
-    display: flex;
+  label {
+    width: 100%;
+  }
+
+  input {
+    font-family: "Poppins", sans-serif;
+
+    &[type=text] {
+      width: 100%;
+      background-color: $color-primary-400;
+
+      &::placeholder {
+        color: $white;
+      }
+    }
+
+    &[type=submit] {
+      background-color: $white;
+    }
+
+    outline: none;
+    padding: 10px 20px;
+    border: 2px solid $white;
+    border-radius: 25px;
   }
 }
 
 footer {
+  padding: 20px;
+
   color: $white;
   display: flex;
   align-items: center;
@@ -92,13 +139,12 @@ footer {
 
   section {
     text-align: right;
+    padding-right: 20px;
+    margin-right: 20px;
+    border-right: 4px solid $white;
 
     p {
       margin: 0;
     }
-  }
-
-  img {
-    padding: 10px;
   }
 }
