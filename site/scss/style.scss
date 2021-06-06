@@ -5,8 +5,12 @@ $white: white;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-main {
+body {
   margin: 0;
+}
+
+
+main {
   display: grid;
 
   @media (min-width: 1200px) {
@@ -56,4 +60,33 @@ main {
 
 h1 {
   font-size: 48px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+
+  &.btn {
+    border-radius: 25px;
+    background-color: $white;
+    padding: 10px 20px;
+  }
+}
+
+header {
+  top: 20px;
+  right: 20px;
+  position: fixed;
+
+  nav {
+    display: flex;
+  }
+}
+
+footer {
+  display: flex;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
