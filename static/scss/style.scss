@@ -5,17 +5,22 @@ $white: white;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+:root {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
+  font-size: 16px;
   height: 100vh;
 }
 
 header {
   top: 20px;
   right: 20px;
-  position: fixed;
+  position: absolute;
 
   nav {
     display: flex;
@@ -24,7 +29,13 @@ header {
 
 main {
   display: grid;
-  height: 100vh;
+  place-items: center;
+  border-bottom: 8px solid $white;
+}
+
+.landing {
+  min-height: calc(100vh);
+  display: grid;
 
   @media (min-width: 1200px) {
     grid-template-columns: 1fr 1fr;
@@ -33,11 +44,8 @@ main {
   & > section {
     display: grid;
     place-content: center;
+    border-bottom: 8px solid $white;
     padding: 50px;
-
-    @media (min-width: 1200px) {
-      height: calc(100vh - 100px);
-    }
   }
 }
 
@@ -50,15 +58,11 @@ main {
     text-align: right;
   }
 
-  @media (max-width: 1200px) {
-    border-bottom: 8px solid $white;
-  }
-
   h2 {
-    font-size: 32px;
+    font-size: 2em;
 
     strong {
-      font-size: 36px;
+      font-size: 1.25em;
       letter-spacing: 6px;
       text-transform: uppercase;
       color: $white;
@@ -73,7 +77,8 @@ main {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 3em;
+  box-sizing: border-box;
 }
 
 a {
@@ -81,7 +86,7 @@ a {
   text-decoration: none;
 
   &.btn {
-    border-radius: 25px;
+    border-radius: 1.5em;
     background-color: $white;
     padding: 10px 20px;
   }
@@ -108,8 +113,10 @@ form#search {
     font-family: "Poppins", sans-serif;
 
     &[type=text] {
-      width: 100%;
+      width: calc(100% - 40px);
+      color: $white;
       background-color: $color-primary-400;
+      padding-right: 60px;
 
       &::placeholder {
         color: $white;
@@ -127,15 +134,32 @@ form#search {
   }
 }
 
+.container {
+  padding: 50px;
+  display: grid;
+  place-content: center;
+  max-width: 1200px;
+}
+
+.card {
+  color: $color-primary-700;
+  background-color: $white;
+  border-radius: 25px;
+  padding: 50px;
+
+  p {
+    max-width: 75ch;
+    text-align: justify;
+  }
+}
+
 footer {
+  background: radial-gradient(circle at right, $color-primary-400, $color-primary-700) no-repeat;
   padding: 20px;
 
   color: $white;
   display: flex;
-  align-items: center;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  justify-content: flex-end;
 
   section {
     text-align: right;
