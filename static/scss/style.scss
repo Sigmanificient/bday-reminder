@@ -9,6 +9,19 @@ $white: white;
   scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+
+  &-track {
+    background: $white;
+  }
+
+  &-thumb {
+    background: $color-primary-700;
+  }
+}
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
