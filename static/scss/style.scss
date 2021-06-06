@@ -103,6 +103,18 @@ main {
 h1 {
   font-size: 3em;
   box-sizing: border-box;
+
+  strong {
+    text-decoration: underline dotted;
+  }
+
+  &:not(.search) strong {
+    color: $color-primary-400;
+  }
+
+  &.search strong {
+    color: $color-secondary-400;
+  }
 }
 
 a {
@@ -116,7 +128,7 @@ a {
   }
 
   &#add {
-    padding: 10px 20px;
+    margin: 20px 0;
   }
 
   &.github {
