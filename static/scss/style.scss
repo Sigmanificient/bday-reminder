@@ -7,6 +7,8 @@ $white: white;
 
 body {
   margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 
@@ -17,16 +19,13 @@ main {
     grid-template-columns: 1fr 1fr;
   }
 
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-
   & > section {
     display: grid;
     place-content: center;
-    padding: 0 50px;
+    padding: 50px;
 
     @media (min-width: 1200px) {
-      height: 100vh;
+      height: calc(100vh - 100px);
     }
   }
 }
@@ -65,7 +64,6 @@ h1 {
 a {
   color: inherit;
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
 
   &.btn {
     border-radius: 25px;
@@ -85,8 +83,22 @@ header {
 }
 
 footer {
+  color: $white;
   display: flex;
+  align-items: center;
   position: fixed;
   bottom: 20px;
   right: 20px;
+
+  section {
+    text-align: right;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  img {
+    padding: 10px;
+  }
 }
