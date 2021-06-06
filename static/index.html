@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <title>Bday Reminder</title>
@@ -12,21 +13,38 @@
     <nav><a href="#" class="btn">Connection</a></nav>
 </header>
 <main>
-    <section class="left">
-        <h1 class="title">Vous oubliez souvent les anniversaires de vos potes ?</h1>
-        <h2>Ne les oubliez plus avec <br> <strong>Bday Reminder</strong></h2>
+    <section class="landing">
+        <section class="left">
+            <h1 class="title">Vous oubliez souvent les anniversaires de vos potes?</h1>
+            <h2>Ne les oubliez plus avec <br> <strong>Bday Reminder</strong></h2>
+            <section class="wrapper">
+                <a class="btn" href="#description">En savoir plus</a>
+            </section>
+        </section>
+        <section class="right">
+            <h1 class="title">Recherchez une date d'anniversaire</h1>
+
+            <form id="search" action="#">
+                <label>
+                    <input name="pseudonym" type="text" placeholder="Entrez un nom" required>
+                </label>
+                <input type="submit" value="Recherche">
+            </form>
+
+            <a id="add" href="#">Entrez une nouvelle date d'anniversaire</a>
+        </section>
     </section>
-    <section class="right">
-        <h1 class="title">Recherchez une date d'anniversaire</h1>
 
-        <form id="search" action="#">
-            <label>
-                <input name="pseudonym" type="text" placeholder="Entrez un nom" required>
-            </label>
-            <input type="submit" value="Recherche">
-        </form>
-
-        <a id="add" href="#">Entrez une nouvelle date d'anniversaire</a>
+    <section id="description" class="container">
+        <section class="card">
+            <h1>Qu'est-ce que Bday Reminder ?</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti eum fugiat modi nihil nulla
+                tempora! Eos porro reiciendis sint.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam assumenda consequatur delectus
+                deserunt dignissimos dolor dolore doloribus eius eveniet explicabo hic laboriosam maxime neque nesciunt
+                nulla officia pariatur placeat possimus, praesentium quas repellendus sint tempore temporibus tenetur
+                totam unde vel vitae voluptatem voluptatibus? Fugiat iste nisi porro provident sapiente.</p>
+        </section>
     </section>
 </main>
 <footer>
