@@ -1,0 +1,47 @@
+$color-primary-400: #18588C;
+$color-primary-700: #283747;
+$color-secondary-400: #4df5d5;
+$white: white;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+
+  & > section {
+    height: 100vh;
+    display: grid;
+    place-content: center;
+  }
+}
+
+.left {
+
+  color: $color-primary-700;
+  background: radial-gradient(ellipse at top right, $color-secondary-400, $color-primary-400);
+  text-align: right;
+  border-right: 8px solid $white;
+  padding-right: 25px;
+
+  .title {
+    font-size: 48px;
+  }
+
+  h2 {
+    strong {
+      text-transform: uppercase;
+      color: $white;
+    }
+  }
+}
+
+.right {
+  color: $white;
+  background-color: $color-primary-400;
+  padding-left: 25px;
+}
+
