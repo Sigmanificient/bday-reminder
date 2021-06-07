@@ -24,6 +24,7 @@ $white: white;
 
 body {
   margin: 0;
+  padding-top: 45px;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
 
@@ -41,7 +42,9 @@ header {
   background-color: $white;
   justify-content: center;
   position: fixed;
+  height: 45px;
   width: 100%;
+  top: 0;
 
   nav {
     display: flex;
@@ -86,7 +89,7 @@ main {
 
 .landing {
   width: 100%;
-  min-height: calc(100vh - 45px);
+  min-height: calc(100vh - 90px);
   display: grid;
 
   @media (min-width: 1200px) {
