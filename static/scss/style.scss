@@ -177,6 +177,12 @@ a {
     &:hover {
       box-shadow: 0 0 0 $white, 0 0 25px $white;
     }
+
+    &:focus {
+      border: none;
+      outline: none;
+      box-shadow: 0 0 0 5px $color-primary-700;
+    }
   }
 
   &.underline {
@@ -196,18 +202,29 @@ a {
       background: $color-primary-700;
     }
 
-    &:hover::after {
+    &:hover::after, &:focus::after {
       width: 80%;
       left: 0;
       background: $color-primary-700;
     }
+
+    &:focus {
+      border: 0;
+      outline: 0;
+    }
   }
 
   &.github {
-    transition: text-shadow 0.3s ease-in-out;
+    transition: letter-spacing 0.5s ease-in-out, text-shadow 0.3s ease-in-out;
 
     &:hover {
       text-shadow: 0 0 10px rgba(100, 255, 100, 0.9);
+    }
+
+    &:focus {
+      letter-spacing: 4px;
+      border: none;
+      outline: none;
     }
 
     color: $color-secondary-400;
@@ -215,14 +232,19 @@ a {
 
   &.turn {
     vertical-align: middle;
-    transition: transform 1.5s cubic-bezier(0.53,-0.51, 0, 1.55);
 
     img {
       display: block;
     }
 
-    &:hover {
+    &:hover, &:focus {
+      transition: transform 1.5s cubic-bezier(0.53, -0.51, 0, 1.55);
       transform: rotate(360deg);
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
     }
   }
 }
@@ -231,8 +253,10 @@ form#search {
   display: flex;
   max-width: 360px;
 
-  &:hover input[type=submit], &:focus-within input[type=submit] {
-    transform: translateX(40px);
+  @media (min-width: 620px) {
+    &:hover input[type=submit], &:focus-within input[type=submit] {
+      transform: translateX(40px);
+    }
   }
 
   label {
@@ -255,6 +279,7 @@ form#search {
     }
 
     &[type=submit] {
+      z-index: 1;
       background-color: $white;
       transition: transform 0.3s ease-in-out;
     }
