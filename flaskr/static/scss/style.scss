@@ -33,8 +33,6 @@ body {
   @media (min-width: 620px) {
     font-size: 16px;
   }
-
-  height: 100vh;
 }
 
 header {
@@ -291,6 +289,46 @@ form#search {
     padding: 10px 20px;
     border: 2px solid $white;
     border-radius: 25px;
+  }
+}
+
+form#login {
+  background: radial-gradient(ellipse at top right, $color-secondary-400, $color-primary-400);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  width: clamp(25%, 320px, 75%);
+  margin-bottom: 50px;
+
+  label {
+    padding: 20px 0;
+    width: 80%;
+
+    &[for="actions"] {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  input {
+    border-radius: 4px;
+
+    &.btn {
+      border-radius: 4px;
+      background-color: $white;
+      transition: box-shadow 0.3s ease-in-out;
+      padding: 10px 20px;
+    }
+
+    padding: 10px 20px;
+    outline: none;
+    border: 0;
+  }
+
+  input[type="text"], input[type="password"] {
+    height: 24px;
+    width: calc(100% - 40px);
   }
 }
 
