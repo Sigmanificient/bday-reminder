@@ -1,25 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <title>Bday Reminder</title>
-</head>
-<body>
-<header>
-    <nav>
-        <a class="underline" href="#">Bday Reminder</a>
-        {% if g.user %}
-            <a href="{{ url_for('auth.logout') }}">Log Out</a>
-        {% else %}
-            <a href="{{ url_for('auth.login') }}">Log In</a>
-        {% endif %}
-    </nav>
-</header>
-<main>
+{% extends 'base.html' %}
+
+{% block content %}
     <h2>Se connecter</h2>
     <form method="post">
         <label for="username">Identifiant</label>
@@ -27,20 +8,5 @@
         <label for="password">Mot de passe</label>
         <input type="password" name="password" id="password" placeholder="Mot de passe" required>
         <input type="submit" value="Se connecter">
-  </form>
-
-    {% block content %}{% endblock %}
-</main>
-<footer>
-    <section class="authors">
-        <p>By
-            <a class="github" href="https://github.com/Corentin384">Coco</a> &
-            <a class="github" href="https://github.com/Sigmanificient">Sigmanificient</a>
-        </p>
-    </section>
-    <a class="turn" href="https://github.com/Corentin384/bday-reminder">
-        <img src="../static/svg/github_icon.svg" alt="Github repository">
-    </a>
-</footer>
-</body>
-</html>
+    </form>
+{% endblock %}
