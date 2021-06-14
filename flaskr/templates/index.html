@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="landing">
+    <section class="left">
+        <h1 class="title">Vous <strong>oubliez</strong> souvent les <strong>anniversaires</strong> de vos
+            <strong>potes</strong>?
+        </h1>
+        <h2>Ne les oubliez plus avec <br> <strong>Bday Reminder</strong></h2>
+        <section class="wrapper">
+            <a class="btn" href="#description">En savoir plus</a>
+        </section>
+    </section>
+    <section class="right">
+        <h1 class="search"><strong>Recherchez</strong> une date d'anniversaire</h1>
+
+        <form id="search" action="#">
+            <label>
+                <input name="pseudonym" type="text" placeholder="Entrez un nom" required>
+            </label>
+            <input type="submit" value="Recherche">
+        </form>
+
+        <section class="wrapper">
+            <a id="add" class="underline" href="#">Entrez une nouvelle date d'anniversaire</a>
+        </section>
+    </section>
+</section>
+
+<section id="description" class="container">
+    <section class="card">
+        <h1>Qu'est-ce que <strong>Bday Reminder</strong>?</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti eum fugiat modi nihil nulla
+            tempora! Eos porro reiciendis sint.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam assumenda consequatur delectus
+            deserunt dignissimos dolor dolore doloribus eius eveniet explicabo hic laboriosam maxime neque nesciunt
+            nulla officia pariatur placeat possimus, praesentium quas repellendus sint tempore temporibus tenetur
+            totam unde vel vitae voluptatem voluptatibus? Fugiat iste nisi porro provident sapiente.</p>
+    </section>
+</section>
+{% endblock %}
