@@ -1,4 +1,4 @@
 .idea
 flaskr/static/css
-instance/db.sqlite
+instance/*
 venv
