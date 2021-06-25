@@ -12,11 +12,14 @@
 <header>
     <nav>
         <a class="underline" href="/">Bday Reminder</a>
-        {% if g.user %}
-            <a href="{{ url_for('auth.logout') }}">Log Out</a>
-        {% else %}
-            <a href="{{ url_for('auth.login') }}">Log In</a>
-        {% endif %}
+        <div class="right-nav">
+            {% if g.user %}
+                <a href="{{ url_for('auth.logout') }}">Log Out</a>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}">Log In</a>
+                <a href="{{ url_for('auth.register') }}">Sign up</a>
+            {% endif %}
+        </div>
     </nav>
 </header>
 <main>

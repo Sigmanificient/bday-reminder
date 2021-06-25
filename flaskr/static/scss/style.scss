@@ -36,6 +36,7 @@ body {
 }
 
 header {
+  z-index: 2;
   display: flex;
   background-color: rgba($white, 50%);
   backdrop-filter: blur(15px);
@@ -53,6 +54,16 @@ header {
 
     & > a {
       margin: 10px;
+    }
+  }
+
+  .right-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    & > a {
+      padding: 10px 20px;
     }
   }
 }
