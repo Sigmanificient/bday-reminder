@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Créer un compte</h2>
-<form method="post">
-    <label for="username">Identifiant</label>
-    <input name="username" id="username" placeholder="Identifiant" required>
-    <label for="password">Mot de passe</label>
-    <input type="password" name="password" id="password" placeholder="Mot de passe" required>
-    <input type="submit" value="Créer">
-</form>
+    <h2>Créer un compte</h2>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+        <label for="username">Identifiant</label>
+        <input name="username" id="username" placeholder="Identifiant" required>
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password" placeholder="Mot de passe" required>
+        <input type="submit" value="Créer">
+    </form>
 {% endblock %}

@@ -18,10 +18,8 @@ def register():
         db = get_db()
         error = None
 
-        if not username:
-            error = 'Identifiant requis.'
-        elif not password:
-            error = 'Mot de passe requis.'
+        if not username or not password:
+            error = 'Identifiant requis et Mot de passe requis.'
         elif db.execute(
             'SELECT id FROM users WHERE username = ?', (username,)
         ).fetchone() is not None:
@@ -35,9 +33,7 @@ def register():
             db.commit()
             return redirect(url_for('auth.login'))
 
-        flash(error)
-
-    return render_template('auth/register.html')
+    return render_template('auth/register.html', error=error)
 
 
 @bp.route('/login', methods=('GET', 'POST'))
