@@ -37,7 +37,8 @@ body {
 
 header {
   display: flex;
-  background-color: $white;
+  background-color: rgba($white, 50%);
+  backdrop-filter: blur(15px);
   justify-content: center;
   position: fixed;
   height: 45px;
