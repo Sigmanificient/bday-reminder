@@ -26,6 +26,12 @@ br::selection {
   background: none;
 }
 
+h2.form-title {
+  color: $color-primary-400;
+  text-align: center;
+  margin-bottom: 0;
+}
+
 body {
   margin: 0;
   padding-top: 45px;
@@ -66,24 +72,28 @@ header {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-    & > a {
-      margin: 10px 20px;
-    }
   }
+}
+
+.main {
+  background: radial-gradient(ellipse at top right, $color-secondary-400, $color-primary-400);
 }
 
 main {
   display: grid;
   place-items: center;
-  border-bottom: 8px solid $white;
-  min-height: 100vh;
+  min-height: calc(100vh - 90px);;
 
-  & > .wrapper {
-    display: grid;
-    place-items: center;
+  & > .form-wrapper {
     margin: 0;
-    width: 100%;
+    display: grid;
+    padding: 20px;
+    place-items: center;
+    place-content: center;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+    width: max-content;
+    background-color: white;
+    border-radius: 32px;
   }
 }
 
@@ -339,13 +349,11 @@ form#search {
 }
 
 form#login, form#register {
-  background: radial-gradient(ellipse at top right, $color-secondary-400, $color-primary-400);
   display: grid;
   place-items: center;
   padding: 20px;
   border-radius: 8px;
-  width: clamp(25%, 320px, 75%);
-  margin-bottom: 50px;
+  width: clamp(25vw, 320px, 75vw);
 
   label {
     padding: 20px 0;
@@ -358,23 +366,33 @@ form#login, form#register {
   }
 
   input {
+    color: $white;
+    padding: 10px 20px;
+    outline: none;
+    border: 0;
     border-radius: 4px;
+    background-color: $color-primary-400;
 
     &.btn {
       border-radius: 4px;
-      background-color: $white;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
       transition: box-shadow 0.3s ease-in-out;
       padding: 10px 20px;
     }
 
-    padding: 10px 20px;
-    outline: none;
-    border: 0;
+    &[type="submit"] {
+      background: radial-gradient(ellipse at top right, $color-primary-400 0%, $color-primary-700 100%);
+    }
   }
 
   input[type="text"], input[type="password"] {
     height: 24px;
     width: calc(100% - 40px);
+    box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+
+    &::placeholder {
+      color: $white;
+    }
   }
 }
 
@@ -382,7 +400,6 @@ form#login, form#register {
   padding: 50px;
   display: grid;
   place-content: center;
-  max-width: 1200px;
 }
 
 .card {
