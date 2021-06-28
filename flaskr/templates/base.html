@@ -14,16 +14,18 @@
         <a class="underline" href="/">Bday Reminder</a>
         <div class="right-nav">
             {% if g.user %}
-                <a href="{{ url_for('auth.logout') }}">Log Out</a>
+                <a class="underline" href="{{ url_for('auth.logout') }}">Log Out</a>
             {% else %}
-                <a href="{{ url_for('auth.login') }}">Log In</a>
-                <a href="{{ url_for('auth.register') }}">Sign up</a>
+                <a class="underline" href="{{ url_for('auth.login') }}">Log In</a>
+                <a class="underline" href="{{ url_for('auth.register') }}">Sign up</a>
             {% endif %}
         </div>
     </nav>
 </header>
 <main>
-    {% block content %}{% endblock %}
+    <div class="wrapper">
+        {% block content %}{% endblock %}
+    </div>
 </main>
 <footer>
     <section class="authors">

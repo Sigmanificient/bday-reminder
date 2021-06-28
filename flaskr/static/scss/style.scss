@@ -1,6 +1,6 @@
-$color-primary-400: #18588C;
-$color-primary-700: #283747;
-$color-secondary-400: #4df5d5;
+$color-primary-400: #FCA27C;
+$color-primary-700: #F24679;
+$color-secondary-400: #FACC55;
 $white: white;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
@@ -22,6 +22,10 @@ $white: white;
   }
 }
 
+br::selection {
+  background: none;
+}
+
 body {
   margin: 0;
   padding-top: 45px;
@@ -38,8 +42,7 @@ body {
 header {
   z-index: 2;
   display: flex;
-  background-color: rgba($white, 50%);
-  backdrop-filter: blur(15px);
+  background-color: $white;
   justify-content: center;
   position: fixed;
   height: 45px;
@@ -48,12 +51,14 @@ header {
 
   nav {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     flex-flow: row wrap;
     width: 80%;
 
-    & > a {
+    a {
       margin: 10px;
+      color: $color-primary-700;
     }
   }
 
@@ -63,7 +68,7 @@ header {
     justify-content: flex-end;
 
     & > a {
-      padding: 10px 20px;
+      margin: 10px 20px;
     }
   }
 }
@@ -72,6 +77,14 @@ main {
   display: grid;
   place-items: center;
   border-bottom: 8px solid $white;
+  min-height: 100vh;
+
+  & > .wrapper {
+    display: grid;
+    place-items: center;
+    margin: 0;
+    width: 100%;
+  }
 }
 
 @keyframes slide-down {
@@ -117,7 +130,7 @@ main {
 
 .left {
   color: $color-primary-700;
-  background: radial-gradient(ellipse at top right, $color-secondary-400, $color-primary-400);
+  background: radial-gradient(ellipse at bottom right, $color-primary-700 0%, $color-secondary-400 100%);
   border-bottom: 8px solid $white;
 
   @media (min-width: 1200px) {
@@ -127,13 +140,22 @@ main {
   }
 
   h2 {
+    color: $color-secondary-400;
     font-size: 2em;
+
+    &::selection {
+      color: $color-primary-700;
+    }
 
     strong {
       font-size: 1.25em;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: $white;
+
+      &::selection {
+        color: $color-secondary-400;
+      }
     }
   }
 
@@ -159,23 +181,34 @@ main {
 h1 {
   font-size: 3em;
   box-sizing: border-box;
+  color: $white;
+
+  &::selection {
+    color: $color-primary-700;
+  }
 
   strong {
     text-decoration: underline dotted;
+
+    &::selection {
+      color: $white;
+    }
   }
 
   &:not(.search) strong {
-    color: $color-primary-400;
+    color: $color-secondary-400;
   }
 
   &.search strong {
-    color: $color-secondary-400;
+    color: $color-primary-700;
   }
 }
 
 a {
   color: inherit;
+  user-select: none;
   text-decoration: none;
+  font-weight: normal;
 
   &#add::after {
     background: $white;
@@ -194,7 +227,7 @@ a {
     &:focus {
       border: none;
       outline: none;
-      box-shadow: 0 0 0 5px $color-primary-700;
+      box-shadow: 0 0 0 5px $color-primary-400;
     }
   }
 
@@ -228,19 +261,15 @@ a {
   }
 
   &.github {
-    transition: letter-spacing 0.5s ease-in-out, text-shadow 0.3s ease-in-out;
+    color: $color-primary-700;
+    transition: letter-spacing 0.5s ease-in-out;
+    font-weight: 900;
 
-    &:hover {
-      text-shadow: 0 0 10px rgba(100, 255, 100, 0.9);
-    }
-
-    &:focus {
+    &:hover, &:focus {
       letter-spacing: 4px;
       border: none;
       outline: none;
     }
-
-    color: $color-secondary-400;
   }
 
   &.turn {
@@ -277,7 +306,12 @@ form#search {
   }
 
   input {
+    color: $color-primary-700;
     font-family: "Poppins", sans-serif;
+
+    &::selection {
+      color: $color-primary-700;
+    }
 
     &[type=text] {
       width: 100%;
@@ -304,7 +338,7 @@ form#search {
   }
 }
 
-form#login {
+form#login, form#register {
   background: radial-gradient(ellipse at top right, $color-secondary-400, $color-primary-400);
   display: grid;
   place-items: center;
@@ -356,14 +390,31 @@ form#login {
   background-color: $white;
   border-radius: 25px;
 
+  h1 {
+    color: $color-primary-700;
+
+    &::selection {
+      color: $color-secondary-400;
+    }
+  }
+
+  strong::selection {
+    color: $color-primary-700;
+  }
+
   p {
     max-width: 75ch;
     text-align: justify;
+
+    &::selection {
+      background-color: $color-primary-400;
+      color: $white;
+    }
   }
 }
 
 footer {
-  background: radial-gradient(circle at right, $color-primary-400, $color-primary-700) no-repeat;
+  background: radial-gradient(circle at right, $color-secondary-400, $color-primary-700) no-repeat;
   padding: 20px;
 
   color: $white;
@@ -379,6 +430,7 @@ footer {
     border-right: 4px solid $white;
 
     p {
+      user-select: none;
       margin: 0;
     }
   }

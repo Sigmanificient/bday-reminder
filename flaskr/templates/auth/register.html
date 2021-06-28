@@ -7,11 +7,19 @@
         <p>{{ error }}</p>
     {% endif %}
 
-    <form method="post">
-        <label for="username">Identifiant</label>
-        <input name="username" id="username" placeholder="Identifiant" required>
-        <label for="password">Mot de passe</label>
-        <input type="password" name="password" id="password" placeholder="Mot de passe" required>
-        <input type="submit" value="Créer">
+    <form id="register" method="post">
+        <label for="username">
+            <input type="text" id="username" name="username" placeholder="Identifiant" required>
+        </label>
+
+        <label for="password">
+            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+        </label>
+
+        <label for="actions">
+            <input class="btn" type="submit" value="Créer">
+            <input class="btn" type="reset" value="Annuler" accesskey="r">
+        </label>
+
     </form>
 {% endblock %}
