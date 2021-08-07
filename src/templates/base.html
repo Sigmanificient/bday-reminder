@@ -8,6 +8,15 @@
     <title>{{ title }}</title>
 </head>
 <body>
+<div class="links">
+    <a href="{{ url_for('index') }}"> Index </a>
+    <a href="{{ url_for('auth/login') }}"> Login </a>
+    <a href="{{ url_for('auth/register') }}"> Register </a>
+    <a href="{{ url_for('auth/delete') }}"> Delete </a>
+    <a href="{{ url_for('dashboard') }}"> Dashboard </a>
+    <a href="{{ url_for('legal') }}"> Legal </a>
+
+</div>
 {% block content %}{% endblock %}
 </body>
 </html>
