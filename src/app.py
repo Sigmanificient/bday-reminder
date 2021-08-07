@@ -49,6 +49,21 @@ def login_page():
 
 @app.route('/auth/register', methods=('GET', 'POST'))
 def register_page():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        if username and password:
+            new_user = User(
+                pseudo=username,
+                password=hashlib.sha512(password.encode('utf-8')).hexdigest()
+            )
+
+            db.session.add(new_user)
+            db.session.commit()
+            print("success")
+            return redirect(url_for('index_page'))
+
     return render_template('auth/register.jinja2')
 
 
