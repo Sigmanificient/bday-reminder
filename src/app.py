@@ -24,32 +24,32 @@ class Birthday(db.Model):
 
 @app.route('/')
 def index_page():
-    return render_template('index.html')
+    return render_template('index.jinja2')
 
 
 @app.route('/auth/login')
 def login_page():
-    return render_template('auth/login.html')
+    return render_template('auth/login.jinja2')
 
 
 @app.route('/auth/register')
 def register_page():
-    return render_template('auth/register.html')
+    return render_template('auth/register.jinja2')
 
 
 @app.route('/dashboard')
 def dashboard_page():
-    return render_template('dashboard.html')
+    return render_template('dashboard.jinja2')
 
 
 @app.route('/auth/delete')
 def delete_account_page():
-    return render_template('auth/delete.html')
+    return render_template('auth/delete.jinja2')
 
 
 @app.route('/legal')
 def legal_page():
-    return render_template('legal.html')
+    return render_template('legal.jinja2')
 
 
 if __name__ == '__main__':
