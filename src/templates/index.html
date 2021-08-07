@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>index page</p>
+    <h1>Index page</h1>
+    <h2> Search a birthday</h2>
+    <form method="post" action="{{ url_for('index_page') }}">
+        <label for="account_name">
+            <input type="text" name="search" placeholder="search a birthday">
+        </label>
+        <input type="submit">
+    </form>
 {% endblock %}
