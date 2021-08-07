@@ -1,12 +1,18 @@
 import re
-from src.security import sha512
-from flask import Flask, render_template, redirect, url_for, request
+import secrets
+
+from flask import Flask, render_template, redirect, url_for, request, session
 from flask_sqlalchemy import SQLAlchemy
+
+from src.security import sha512
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bday.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+app.config.from_object(__name__)
+app.secret_key = secrets.token_urlsafe(32)
 
 USERNAME_PATTERN = r'^([\w -]){4,32}$'
 PASSWORD_PATTERN = r'^(.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d).*){8,32}$'
@@ -45,7 +51,8 @@ def login_page():
             ).first()
 
             if login is not None:
-                return redirect(url_for('index_page'))
+                session['user'] = {'name': username}
+                return redirect(url_for('dashboard_page'))
 
     return render_template('auth/login.jinja2')
 
@@ -71,13 +78,22 @@ def register_page():
             db.session.add(new_user)
             db.session.commit()
 
-            return redirect(url_for('index_page'))
+            session['user'] = {'name': username}
+            return redirect(url_for('dashboard_page'))
 
     return render_template('auth/register.jinja2')
 
 
 @app.route('/dashboard')
 def dashboard_page():
+    user = session.get('user')
+
+    if not user:
+        return redirect(url_for('login_page'))
+
+    if not user.get('name'):
+        return redirect(url_for('login_page'))
+
     return render_template('dashboard.jinja2')
 
 
