@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -50,6 +50,11 @@ def delete_account_page():
 @app.route('/legal')
 def legal_page():
     return render_template('legal.jinja2')
+
+
+@app.route('/logout/')
+def logout():
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
