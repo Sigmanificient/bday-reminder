@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -29,6 +29,16 @@ def index_page():
 
 @app.route('/auth/login', methods=('GET', 'POST'))
 def login_page():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        if username and password:
+            login = User.query.filter_by(pseudo=username, password=password).first()
+
+            if login is not None:
+                return redirect(url_for('index_page'))
+
     return render_template('auth/login.jinja2')
 
 
