@@ -27,6 +27,31 @@ def index():
     return render_template('base.html')
 
 
+@app.route('/login')
+def login():
+    return render_template('login page')
+
+
+@app.route('/register')
+def register():
+    return render_template('register page')
+
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard page')
+
+
+@app.route('/delete')
+def delete():
+    return render_template('delete page')
+
+
+@app.route('/legal')
+def legal():
+    return render_template('legal page')
+
+
 if __name__ == '__main__':
     db.create_all()
     app.run(debug=True)
