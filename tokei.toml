@@ -1,0 +1,4 @@
+columns = 80
+sort = "lines"
+types = ["Python", "Html", "Css", "JavaScript", "Sql"]
+treat_doc_strings_as_comments = true
