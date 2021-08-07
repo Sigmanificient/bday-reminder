@@ -1,3 +1,5 @@
+import hashlib
+
 from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 
@@ -34,7 +36,10 @@ def login_page():
         password = request.form['password']
 
         if username and password:
-            login = User.query.filter_by(pseudo=username, password=password).first()
+            login = User.query.filter_by(
+                pseudo=username,
+                password=hashlib.sha512(password.encode('utf-8')).hexdigest()
+            ).first()
 
             if login is not None:
                 return redirect(url_for('index_page'))
