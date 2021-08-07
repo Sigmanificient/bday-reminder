@@ -22,17 +22,17 @@ class Birthday(db.Model):
     person_birthday = db.Column(db.Date)
 
 
-@app.route('/')
+@app.route('/', methods=('GET', 'POST'))
 def index_page():
     return render_template('index.jinja2')
 
 
-@app.route('/auth/login')
+@app.route('/auth/login', methods=('GET', 'POST'))
 def login_page():
     return render_template('auth/login.jinja2')
 
 
-@app.route('/auth/register')
+@app.route('/auth/register', methods=('GET', 'POST'))
 def register_page():
     return render_template('auth/register.jinja2')
 
@@ -42,7 +42,7 @@ def dashboard_page():
     return render_template('dashboard.jinja2')
 
 
-@app.route('/auth/delete')
+@app.route('/auth/delete', methods=('GET', 'POST'))
 def delete_account_page():
     return render_template('auth/delete.jinja2')
 
