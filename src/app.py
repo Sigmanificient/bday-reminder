@@ -51,8 +51,14 @@ def register_page():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        confirm_password = request.form['confirm_password']
 
-        if username and password:
+        if (
+            username
+            and password
+            and confirm_password
+            and confirm_password == password
+        ):
             new_user = User(
                 pseudo=username,
                 password=sha512(password)
