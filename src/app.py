@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -23,32 +23,32 @@ class Birthday(db.Model):
 
 
 @app.route('/')
-def index():
+def index_page():
     return render_template('index.html')
 
 
 @app.route('/auth/login')
-def login():
+def login_page():
     return render_template('auth/login.html')
 
 
 @app.route('/auth/register')
-def register():
+def register_page():
     return render_template('auth/register.html')
 
 
 @app.route('/dashboard')
-def dashboard():
+def dashboard_page():
     return render_template('dashboard.html')
 
 
 @app.route('/auth/delete')
-def delete():
+def delete_account_page():
     return render_template('auth/delete.html')
 
 
 @app.route('/legal')
-def legal():
+def legal_page():
     return render_template('legal.html')
 
 

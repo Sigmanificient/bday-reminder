@@ -5,16 +5,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
     <title>{{ title }}</title>
 </head>
 <body>
-<div class="links">
-    <a href="{{ url_for('index') }}"> Index </a>
-    <a href="{{ url_for('auth/login') }}"> Login </a>
-    <a href="{{ url_for('auth/register') }}"> Register </a>
-    <a href="{{ url_for('auth/delete') }}"> Delete </a>
-    <a href="{{ url_for('dashboard') }}"> Dashboard </a>
-    <a href="{{ url_for('legal') }}"> Legal </a>
+<div class="links-debug">
+    <a href="{{ url_for('index_page') }}"> Index </a>
+    <a href="{{ url_for('login_page') }}"> Login </a>
+    <a href="{{ url_for('register_page') }}"> Register </a>
+    <a href="{{ url_for('delete_account_page') }}"> Delete </a>
+    <a href="{{ url_for('dashboard_page') }}"> Dashboard </a>
+    <a href="{{ url_for('legal_page') }}"> Legal </a>
 
 </div>
 {% block content %}{% endblock %}

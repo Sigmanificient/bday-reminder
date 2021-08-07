@@ -1,9 +1,7 @@
-body {
-  margin: 0;
-}
-
-.links {
+.links-debug {
   display: flex;
+  position: absolute;
+  bottom: 0;
 
   a {
     color: inherit;
