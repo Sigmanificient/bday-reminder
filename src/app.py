@@ -24,38 +24,32 @@ class Birthday(db.Model):
 
 @app.route('/')
 def index():
-    pass
-    # return render_template('index')
+    return render_template('index.html')
 
 
 @app.route('/login')
 def login():
-    pass
-    # return render_template('login page')
+    return render_template('auth/login.html')
 
 
 @app.route('/register')
 def register():
-    pass
-    # return render_template('register page')
+    return render_template('auth/register.html')
 
 
 @app.route('/dashboard')
 def dashboard():
-    pass
-    # return render_template('dashboard page')
+    return render_template('dashboard.html')
 
 
 @app.route('/delete')
 def delete():
-    pass
-    # return render_template('delete page')
+    return render_template('auth/delete.html')
 
 
 @app.route('/legal')
 def legal():
-    pass
-    # return render_template('legal page')
+    return render_template('legal.html')
 
 
 if __name__ == '__main__':
