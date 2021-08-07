@@ -1,3 +1,4 @@
+import re
 from src.security import sha512
 from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
@@ -6,6 +7,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bday.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+USERNAME_PATTERN = r'^([\w -]){4,32}$'
+PASSWORD_PATTERN = r'^(.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d).*){8,32}$'
 
 
 # DB Model
@@ -54,8 +58,8 @@ def register_page():
         confirm_password = request.form['confirm_password']
 
         if (
-            username
-            and password
+            re.match(USERNAME_PATTERN, username)
+            and re.match(PASSWORD_PATTERN, password)
             and confirm_password
             and confirm_password == password
         ):
@@ -66,7 +70,7 @@ def register_page():
 
             db.session.add(new_user)
             db.session.commit()
-            print("success")
+
             return redirect(url_for('index_page'))
 
     return render_template('auth/register.jinja2')

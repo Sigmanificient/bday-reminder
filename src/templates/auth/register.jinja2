@@ -5,11 +5,11 @@
 
     <form method="post" action="{{ url_for('register_page') }}">
         <label for="username">
-            <input type="text" name="username" placeholder="username" pattern="^([\w -]){4,32}$">
+            <input type="text" name="username" placeholder="username" pattern="{{ USERNAME_PATTERN}}">
         </label>
         <label for="password">
-            <input type="password" name="password" placeholder="password" pattern="^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? ]).*$">
-            <input type="password" name="confirm_password" placeholder="confirm_password" pattern="^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? ]).*$">
+            <input type="password" name="password" placeholder="password" pattern="{{ PASSWORD_PATTERN }}">
+            <input type="password" name="confirm_password" placeholder="confirm_password" pattern="{{ PASSWORD_PATTERN }}">
         </label>
         <input type="submit" value="Register">
     </form>
