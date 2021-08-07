@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -27,12 +27,12 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/login')
+@app.route('auth/login')
 def login():
     return render_template('auth/login.html')
 
 
-@app.route('/register')
+@app.route('auth/register')
 def register():
     return render_template('auth/register.html')
 
@@ -42,7 +42,7 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route('/delete')
+@app.route('auth/delete')
 def delete():
     return render_template('auth/delete.html')
 
