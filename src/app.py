@@ -1,5 +1,4 @@
-import hashlib
-
+from src.security import sha512
 from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 
@@ -38,7 +37,7 @@ def login_page():
         if username and password:
             login = User.query.filter_by(
                 pseudo=username,
-                password=hashlib.sha512(password.encode('utf-8')).hexdigest()
+                password=sha512(password)
             ).first()
 
             if login is not None:
@@ -56,7 +55,7 @@ def register_page():
         if username and password:
             new_user = User(
                 pseudo=username,
-                password=hashlib.sha512(password.encode('utf-8')).hexdigest()
+                password=sha512(password)
             )
 
             db.session.add(new_user)
