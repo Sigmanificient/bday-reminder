@@ -27,12 +27,12 @@ def index():
     return render_template('index.html')
 
 
-@app.route('auth/login')
+@app.route('/auth/login')
 def login():
     return render_template('auth/login.html')
 
 
-@app.route('auth/register')
+@app.route('/auth/register')
 def register():
     return render_template('auth/register.html')
 
@@ -42,7 +42,7 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route('auth/delete')
+@app.route('/auth/delete')
 def delete():
     return render_template('auth/delete.html')
 
