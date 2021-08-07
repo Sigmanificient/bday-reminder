@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>register page</p>
+    <h1>Register your account</h1>
+
+    <form method="post" action="{{ url_for('register_page') }}">
+        <label for="username">
+            <input type="text" name="username" placeholder="username">
+        </label>
+        <label for="password">
+            <input type="password" name="password" placeholder="password">
+            <input type="password" name="confirm_password" placeholder="confirm_password">
+        </label>
+        <input type="submit" value="Register">
+    </form>
 {% endblock %}
