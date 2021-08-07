@@ -1,3 +1,13 @@
+# PyCharm Configuration Files
 .idea
-flaskr/static/css
+
+# Python Environment
+__pycache__
 venv
+
+# CSS files
+*.css
+*.css.*
+
+# Database
+*.db
