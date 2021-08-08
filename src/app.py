@@ -1,6 +1,6 @@
 import re
 import secrets
-from datetime import datetime
+
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask_sqlalchemy import SQLAlchemy
 
@@ -35,6 +35,16 @@ class Birthday(db.Model):
 
 db.drop_all()
 db.create_all()
+
+dummy_user = User(
+    pseudo="dummy",
+    password=(
+        "ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac185"
+        "f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff"
+    ),
+    birthday="2001-12-11"
+)
+db.session.commit()
 
 
 @app.route('/', methods=('GET', 'POST'))
