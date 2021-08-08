@@ -231,12 +231,18 @@ def delete_user(index):
     if not user.get('name'):
         return {}
 
+    if not index.isdigit():
+        return {}
+
     db.session.delete(
         Birthday.query.filter_by(
             user_id=user.get('id'),
-        ).all()[int(index)]
+            id=int(index)
+        ).first()
     )
+
     db.session.commit()
+
     return {}
 
 

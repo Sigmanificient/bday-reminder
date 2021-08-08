@@ -32,12 +32,7 @@
                 <div>{{ birthday.person_name }}</div>
                 <div>{{ birthday.person_birthday }}</div>
 
-                <form class="delete-form" method="post"
-                      action="{{ url_for('dashboard_page') }}">
-                    <input type="hidden" value="{{ loop.index }}">
-                    <input type="submit" value="Delete">
-                </form>
-
+                <button data-id="{{ birthday.id }}">Delete</button>
                 <hr>
             </div>
         {% endfor %}
