@@ -1,6 +1,6 @@
 # Bday-reminder 
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Sigmanificient/bday-reminder/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Sigmanificient/bday-reminder/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Sigmanificient/bday-reminder/badges/quality-score.png?b=mvp)](https://scrutinizer-ci.com/g/Sigmanificient/bday-reminder/?branch=mvp)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/corentin384/bday-reminder)
 ![GitHub repo size](https://img.shields.io/github/repo-size/corentin384/bday-reminder)
 ![Lines of code](https://img.shields.io/tokei/lines/github/corentin384/bday-reminder)
