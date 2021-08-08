@@ -81,7 +81,11 @@ def register_page():
             session['user'] = {'name': username}
             return redirect(url_for('dashboard_page'))
 
-    return render_template('auth/register.jinja2')
+    return render_template(
+        'auth/register.jinja2',
+        USERNAME_PATTERN=USERNAME_PATTERN,
+        PASSWORD_PATTERN=PASSWORD_PATTERN
+    )
 
 
 @app.route('/dashboard')
