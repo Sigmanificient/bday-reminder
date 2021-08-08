@@ -146,7 +146,10 @@ def edit_page():
 
 @app.route('/logout/')
 def logout():
-    return redirect(url_for('index'))
+    if session.get('user'):
+        session.pop('user')
+
+    return redirect(url_for('index_page'))
 
 
 if __name__ == '__main__':
