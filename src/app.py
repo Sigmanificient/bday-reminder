@@ -1,6 +1,6 @@
 import re
 import secrets
-
+from datetime import datetime
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask_sqlalchemy import SQLAlchemy
 
@@ -27,8 +27,8 @@ class User(db.Model):
 
 
 class Birthday(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer)
     person_name = db.Column(db.String(32))
     person_birthday = db.Column(db.Date)
 
@@ -90,7 +90,7 @@ def register_page():
     )
 
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=('GET', 'POST'))
 def dashboard_page():
     user = session.get('user')
 
@@ -99,6 +99,15 @@ def dashboard_page():
 
     if not user.get('name'):
         return redirect(url_for('login_page'))
+
+    if request.method == 'POST' and request.form['date']:
+        username = request.form['username']
+        date = datetime.strptime(request.form['date'], '%Y-%m-%d')
+
+        if re.match(USERNAME_PATTERN, username):
+            new_birthday = Birthday(person_name=username,person_birthday=date)
+            db.session.add(new_birthday)
+            db.session.commit()
 
     return render_template('dashboard.jinja2')
 
@@ -178,5 +187,6 @@ def logout():
 
 
 if __name__ == '__main__':
+    db.drop_all()
     db.create_all()
     app.run(debug=True)
