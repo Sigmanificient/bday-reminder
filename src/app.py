@@ -15,8 +15,10 @@ db = SQLAlchemy(app)
 app.config.from_object(__name__)
 app.secret_key = secrets.token_urlsafe(32)
 
-USERNAME_PATTERN = r'^([\w -]){4,32}$'
-PASSWORD_PATTERN = r'^(.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d).*){8,32}$'
+USERNAME_PATTERN = r'^([\w\d-]){4,32}$'
+PASSWORD_PATTERN = (
+    r'^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_ @#$%^&+=]).*$'
+)
 
 
 # DB Model
