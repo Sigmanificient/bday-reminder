@@ -23,14 +23,18 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     pseudo = db.Column(db.String(32))
     password = db.Column(db.String(128))
-    birthday = db.Column(db.Date, default=None)
+    birthday = db.Column(db.String(10), default=None)
 
 
 class Birthday(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer)
     person_name = db.Column(db.String(32))
-    person_birthday = db.Column(db.Date)
+    person_birthday = db.Column(db.String(10))
+
+
+db.drop_all()
+db.create_all()
 
 
 @app.route('/', methods=('GET', 'POST'))
@@ -100,11 +104,11 @@ def dashboard_page():
     if not user.get('name'):
         return redirect(url_for('login_page'))
 
-    if request.method == 'POST' and request.form['date']:
+    if request.method == 'POST':
         username = request.form['username']
-        date = datetime.strptime(request.form['date'], '%Y-%m-%d')
+        date = request.form['date']
 
-        if re.match(USERNAME_PATTERN, username):
+        if re.match(USERNAME_PATTERN, username) and date:
             new_birthday = Birthday(person_name=username, person_birthday=date)
             db.session.add(new_birthday)
             db.session.commit()
@@ -200,6 +204,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    db.drop_all()
-    db.create_all()
     app.run(debug=True)
