@@ -2,4 +2,15 @@
 
 {% block content %}
     <p>dashboard page</p>
+    <h2>Register a birthday</h2>
+
+    <form method="post" action="{{ url_for('dashboard_page') }}">
+        <label for="username">
+            <input type="text" name="username" placeholder="username">
+        </label>
+        <label for="birthday">
+            <input type="date" name="date" placeholder="birthday">
+        </label>
+        <input type="submit" value="Login">
+    </form>
 {% endblock %}

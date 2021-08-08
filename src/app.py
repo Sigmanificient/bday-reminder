@@ -1,6 +1,7 @@
 import re
 import secrets
 
+import password as password
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask_sqlalchemy import SQLAlchemy
 
@@ -40,6 +41,8 @@ def index_page():
 
 @app.route('/auth/login', methods=('GET', 'POST'))
 def login_page():
+    if session.get('user'):
+        return redirect(url_for('dashboard_page'))
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -111,7 +114,7 @@ def delete_account_page():
     if not user.get('name'):
         return redirect(url_for('login_page'))
     if request.method == 'POST' and user.get('name') == request.form.get(
-        'account_name'
+            'account_name'
     ):
         db.session.delete(User.query.filter_by(pseudo=user.get('name')).first())
         db.session.commit()
@@ -138,8 +141,14 @@ def edit_page():
         if request.form.get('new_password'):
             new_password = request.form['new_password']
             confirm_password = request.form['confirm_new_password']
+            old_password = request.form['old_password']
 
-            if new_password == confirm_password:
+            if (
+                    User.query.filter_by(
+                        pseudo=user.get('name'), password=sha512(old_password)
+                    ).first()
+                    and new_password == confirm_password
+            ):
                 user = User.query.filter_by(pseudo=user.get('name')).first()
                 user.password = sha512(new_password)
                 db.session.commit()
@@ -149,8 +158,8 @@ def edit_page():
             confirm_username = request.form['confirm_new_username']
 
             if (
-                new_username == confirm_username
-                and not User.query.filter_by(pseudo=new_username).first()
+                    new_username == confirm_username
+                    and not User.query.filter_by(pseudo=new_username).first()
             ):
                 user = User.query.filter_by(pseudo=user.get('name')).first()
                 user.pseudo = new_username

@@ -4,6 +4,9 @@
     <h1>Edit</h1>
     <h2>Change password</h2>
     <form method="POST" action="{{ url_for('edit_page') }}">
+        <label for="old_password">
+            <input type="password" name="old_password" placeholder="old password">
+        </label>
         <label for="new_password">
             <input type="password" name="new_password" placeholder="new password">
         </label>
