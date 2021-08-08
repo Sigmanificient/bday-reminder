@@ -1,11 +1,15 @@
 {% extends 'base.jinja2' %}
 
+{% block scripts %}
+    <script type="text/javascript" src="/static/js/search_birthday.js"></script>
+{% endblock %}
+
 {% block content %}
     <h1>Index page</h1>
     <h2> Search a birthday</h2>
-    <form method="post" action="{{ url_for('index_page') }}">
+    <form id="birthday_form" method="post" action="{{ url_for('index_page') }}">
         <label for="account_name">
-            <input type="text" name="search" placeholder="search a birthday">
+            <input id="search" type="text" name="search" placeholder="search a birthday">
         </label>
         <input type="submit">
     </form>
