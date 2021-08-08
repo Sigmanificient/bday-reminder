@@ -65,10 +65,10 @@ def register_page():
         confirm_password = request.form['confirm_password']
 
         if (
-            re.match(USERNAME_PATTERN, username)
-            and re.match(PASSWORD_PATTERN, password)
-            and confirm_password
-            and confirm_password == password
+                re.match(USERNAME_PATTERN, username)
+                and re.match(PASSWORD_PATTERN, password)
+                and confirm_password
+                and confirm_password == password
         ):
             new_user = User(
                 pseudo=username,
@@ -105,6 +105,11 @@ def delete_account_page():
 @app.route('/legal')
 def legal_page():
     return render_template('legal.jinja2')
+
+
+@app.route('/auth/edit', methods=('GET', 'POST'))
+def edit_page():
+    return render_template('auth/edit.jinja2')
 
 
 @app.route('/logout/')
