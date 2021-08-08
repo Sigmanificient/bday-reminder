@@ -44,6 +44,7 @@ dummy_user = User(
     ),
     birthday="2001-12-11"
 )
+db.session.add(dummy_user)
 db.session.commit()
 
 
@@ -75,20 +76,25 @@ def login_page():
 
 @app.route('/auth/register', methods=('GET', 'POST'))
 def register_page():
+    if session.get('user'):
+        return redirect(url_for('dashboard_page'))
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
+        birthday = request.form['date']
 
         if (
                 re.match(USERNAME_PATTERN, username)
                 and re.match(PASSWORD_PATTERN, password)
                 and confirm_password
                 and confirm_password == password
+                and birthday
         ):
             new_user = User(
                 pseudo=username,
-                password=sha512(password)
+                password=sha512(password),
+                birthday=birthday
             )
 
             db.session.add(new_user)
