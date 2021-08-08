@@ -138,14 +138,20 @@ def dashboard_page():
 
             db.session.add(new_birthday)
             db.session.commit()
-    birthdays = Birthday.query.filter_by(
-        user_id=user.get('id')
-    ).all()
-    now=datetime.now()
+
+    birthdays = Birthday.query.filter_by(user_id=user.get('id')).all()
+    now = datetime.now()
+
     return render_template(
         'dashboard.jinja2',
         birthdays=birthdays,
-        today_birthdays=[birthday for birthday in birthdays if birthday.person_birthday.endswith(f'-{now.month:02}-{now.day:02}')]
+        today_birthdays=[
+            birthday
+            for birthday in birthdays
+            if birthday.person_birthday.endswith(
+                f'-{now.month:02}-{now.day:02}'
+            )
+        ]
     )
 
 
@@ -213,6 +219,25 @@ def edit_page():
                 session['user'] = {'name': new_username}
 
     return render_template('auth/edit.jinja2')
+
+
+@app.route('/delete/<index>')
+def delete_user(index):
+    user = session.get('user')
+
+    if not user:
+        return {}
+
+    if not user.get('name'):
+        return {}
+
+    db.session.delete(
+        Birthday.query.filter_by(
+            user_id=user.get('id'),
+        ).all()[int(index)]
+    )
+    db.session.commit()
+    return {}
 
 
 @app.route('/api/search/<user>')

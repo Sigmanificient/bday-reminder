@@ -1,5 +1,9 @@
 {% extends 'base.jinja2' %}
 
+{% block scripts %}
+    <script src="/static/js/delete_birthday.js"></script>
+{% endblock scripts %}
+
 {% block content %}
     <p>dashboard page</p>
     <h2>Register a birthday</h2>
@@ -24,9 +28,18 @@
     <h2>Birthday you a have registered</h2>
     <div>
         {% for birthday in birthdays %}
-            <div>{{ birthday.person_name }}</div>
-            <div>{{ birthday.person_birthday }}</div>
-            <hr>
+            <div>
+                <div>{{ birthday.person_name }}</div>
+                <div>{{ birthday.person_birthday }}</div>
+
+                <form class="delete-form" method="post"
+                      action="{{ url_for('dashboard_page') }}">
+                    <input type="hidden" value="{{ loop.index }}">
+                    <input type="submit" value="Delete">
+                </form>
+
+                <hr>
+            </div>
         {% endfor %}
     </div>
 
