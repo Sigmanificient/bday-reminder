@@ -105,7 +105,7 @@ def dashboard_page():
         date = datetime.strptime(request.form['date'], '%Y-%m-%d')
 
         if re.match(USERNAME_PATTERN, username):
-            new_birthday = Birthday(person_name=username,person_birthday=date)
+            new_birthday = Birthday(person_name=username, person_birthday=date)
             db.session.add(new_birthday)
             db.session.commit()
 
@@ -176,6 +176,19 @@ def edit_page():
                 session['user'] = {'name': new_username}
 
     return render_template('auth/edit.jinja2')
+
+
+@app.route('/api/search/<user>')
+def search_user(user):
+    found_user: User = User.query.filter_by(pseudo=user).first()
+    if not found_user:
+        return {}
+
+    return {
+        'id': found_user.id,
+        'name': found_user.pseudo,
+        'birthday': found_user.birthday
+    }
 
 
 @app.route('/logout/')
