@@ -7,10 +7,15 @@
 {% block content %}
     <h1>Index page</h1>
     <h2> Search a birthday</h2>
-    <form id="birthday_form" method="post" action="{{ url_for('index_page') }}">
-        <label for="account_name">
-            <input id="search" type="text" name="search" placeholder="search a birthday">
-        </label>
-        <input type="submit">
+
+    <form id='birthday_form'>
+        <input
+            id="search"
+            type="text"
+            name="search"
+            placeholder="search a birthday"
+        >
+        <input type="submit" value="search">
     </form>
+
 {% endblock %}
