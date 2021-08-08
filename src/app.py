@@ -99,6 +99,19 @@ def dashboard_page():
 
 @app.route('/auth/delete', methods=('GET', 'POST'))
 def delete_account_page():
+    user = session.get('user')
+
+    if not user:
+        return redirect(url_for('login_page'))
+
+    if not user.get('name'):
+        return redirect(url_for('login_page'))
+    if request.method == 'POST' and user.get('name') == request.form.get(
+        'account_name'
+    ):
+        db.session.delete(User.query.filter_by(pseudo=user.get('name')).first())
+        db.session.commit()
+        return redirect(url_for('logout'))
     return render_template('auth/delete.jinja2')
 
 
