@@ -1,21 +1,15 @@
 window.onload = () => {
-    const SearchBirthdayForm = document.getElementById('birthday_form')
-    SearchBirthdayForm.addEventListener('submit', HandleSearchBirthdayForm)
-}
+    const searchBirthdayForm = document.getElementById('birthday_form')
+    searchBirthdayForm.addEventListener(
+        'submit', async (e) => {
+            e.preventDefault()
 
-async function HandleSearchBirthdayForm(e) {
-    e.preventDefault()
+            let searchUser = document.getElementById('search').value
+            let url = `${window.location}api/search/${searchUser}`
 
-    let searchUser = document.getElementById('search').value
-    let url = `${window.location}api/search/${searchUser}`
-
-    await fetch(url).then(
-        (r) => {
-            return r.json();
-        }
-    ).then(
-        (json) => {
-            console.log(json);
+            await fetch(url)
+                .then((r) => r.json())
+                .then((json) => console.log(json))
         }
     )
 }
