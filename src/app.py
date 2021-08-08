@@ -109,6 +109,38 @@ def legal_page():
 
 @app.route('/auth/edit', methods=('GET', 'POST'))
 def edit_page():
+    user = session.get('user')
+
+    if not user:
+        return redirect(url_for('login_page'))
+
+    if not user.get('name'):
+        return redirect(url_for('login_page'))
+
+    if request.method == 'POST':
+        if request.form.get('new_password'):
+            new_password = request.form['new_password']
+            confirm_password = request.form['confirm_new_password']
+
+            if new_password == confirm_password:
+                user = User.query.filter_by(pseudo=user.get('name')).first()
+                user.password = sha512(new_password)
+                db.session.commit()
+
+        elif request.form.get('new_username'):
+            new_username = request.form['new_username']
+            confirm_username = request.form['confirm_new_username']
+
+            if (
+                new_username == confirm_username
+                and not User.query.filter_by(pseudo=new_username).first()
+            ):
+                user = User.query.filter_by(pseudo=user.get('name')).first()
+                user.pseudo = new_username
+                db.session.commit()
+
+                session['user'] = {'name': new_username}
+
     return render_template('auth/edit.jinja2')
 
 

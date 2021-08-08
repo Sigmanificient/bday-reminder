@@ -3,22 +3,22 @@
 {% block content %}
     <h1>Edit</h1>
     <h2>Change password</h2>
-    <form method="post" action="{{ url_for('login_page') }}">
-        <label for="password">
+    <form method="POST" action="{{ url_for('edit_page') }}">
+        <label for="new_password">
             <input type="password" name="new_password" placeholder="new password">
         </label>
-        <label for="password">
+        <label for="confirm_new_password">
             <input type="password" name="confirm_new_password" placeholder="confirm new password">
         </label>
         <input type="submit" value="Change">
     </form>
 
     <h2>Change username</h2>
-    <form method="post" action="{{ url_for('login_page') }}">
-        <label for="password">
+    <form method="POST" action="{{ url_for('edit_page') }}">
+        <label for="new_username">
             <input type="text" name="new_username" placeholder="new username">
         </label>
-        <label for="password">
+        <label for="confirm_new_username">
             <input type="text" name="confirm_new_username" placeholder="confirm new username">
         </label>
         <input type="submit" value="Change">
