@@ -1,5 +1,6 @@
 import re
 import secrets
+from datetime import datetime
 
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask_sqlalchemy import SQLAlchemy
@@ -137,12 +138,14 @@ def dashboard_page():
 
             db.session.add(new_birthday)
             db.session.commit()
-
+    birthdays = Birthday.query.filter_by(
+        user_id=user.get('id')
+    ).all()
+    now=datetime.now()
     return render_template(
         'dashboard.jinja2',
-        birthdays=Birthday.query.filter_by(
-            user_id=user.get('id')
-        ).all()
+        birthdays=birthdays,
+        today_birthdays=[birthday for birthday in birthdays if birthday.person_birthday.endswith(f'-{now.month:02}-{now.day:02}')]
     )
 
 

@@ -13,7 +13,15 @@
         </label>
         <input type="submit" value="Add">
     </form>
+    <h2>Today's Birthday</h2>
+    <div>
+        {% for today_birthday in today_birthdays %}
+            <div>{{ today_birthday.person_name }}</div>
+            <hr>
+        {% endfor %}
+    </div>
 
+    <h2>Birthday you a have registered</h2>
     <div>
         {% for birthday in birthdays %}
             <div>{{ birthday.person_name }}</div>
