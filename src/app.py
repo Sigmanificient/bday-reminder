@@ -68,7 +68,11 @@ def login_page():
             ).first()
 
             if login is not None:
-                session['user'] = {'name': username}
+                session['user'] = {
+                    'name': username,
+                    'id': login.id
+                }
+
                 return redirect(url_for('dashboard_page'))
 
     return render_template('auth/login.jinja2')
@@ -124,12 +128,22 @@ def dashboard_page():
         username = request.form['username']
         date = request.form['date']
 
-        if re.match(USERNAME_PATTERN, username) and date:
-            new_birthday = Birthday(person_name=username, person_birthday=date)
+        if username and date:
+            new_birthday = Birthday(
+                person_name=username,
+                person_birthday=date,
+                user_id=user.get('id')
+            )
+
             db.session.add(new_birthday)
             db.session.commit()
 
-    return render_template('dashboard.jinja2')
+    return render_template(
+        'dashboard.jinja2',
+        birthdays=Birthday.query.filter_by(
+            user_id=user.get('id')
+        ).all()
+    )
 
 
 @app.route('/auth/delete', methods=('GET', 'POST'))

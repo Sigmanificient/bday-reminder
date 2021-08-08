@@ -13,4 +13,13 @@
         </label>
         <input type="submit" value="Add">
     </form>
+
+    <div>
+        {% for birthday in birthdays %}
+            <div>{{ birthday.person_name }}</div>
+            <div>{{ birthday.person_birthday }}</div>
+            <hr>
+        {% endfor %}
+    </div>
+
 {% endblock %}
