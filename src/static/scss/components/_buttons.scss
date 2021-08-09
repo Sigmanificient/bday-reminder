@@ -1,8 +1,14 @@
 @use "../base/colors";
 
 .btn {
-  padding: 4px 8px;
+  user-select: none;
+  padding: 6px 12px;
   color: colors.$white;
   border: 2px solid colors.$white;
   border-radius: 10px;
+
+  &:hover {
+    color: colors.$blue-800;
+    background: colors.$white;
+  }
 }
