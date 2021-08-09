@@ -5,17 +5,36 @@
   width: 100%;
   min-height: 100vh;
   display: grid;
-
   color: colors.$green;
 
-  h1 strong {
-    color: colors.$white;
-    text-decoration: underline dotted;
+  h1 {
+    &::selection {
+      color: colors.$white;
+    }
+
+    strong {
+      color: colors.$white;
+      text-decoration: underline dotted;
+
+      &::selection {
+        color: colors.$green;
+      }
+    }
   }
 
-  h2 strong {
-    color: colors.$white;
-    text-transform: uppercase;
+  h2 {
+    &::selection {
+      color: colors.$white;
+    }
+
+    strong {
+      color: colors.$white;
+      text-transform: uppercase;
+
+      &::selection {
+        color: colors.$green;
+      }
+    }
   }
 
   @media (min-width: 1200px) {
@@ -77,9 +96,24 @@ form#birthday_form {
   place-content: center;
   color: colors.$blue-800;
 
+  ::selection {
+    color: colors.$white;
+    background-color: colors.$blue-300;
+  }
+
+  h1::selection {
+    color: colors.$blue-400;
+    background-color: transparent;
+    text-decoration: none;
+  }
 
   strong {
     color: colors.$blue-400;
     text-decoration: underline dotted;
+
+    &::selection {
+      color: colors.$blue-800;
+      background-color: transparent;
+    }
   }
 }
