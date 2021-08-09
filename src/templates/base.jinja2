@@ -14,17 +14,6 @@
     <title>{{ title }}</title>
 </head>
 <body>
-<div class="links-debug">
-    <a href="{{ url_for('index_page') }}"> Index </a>
-    <a href="{{ url_for('login_page') }}"> Login </a>
-    <a href="{{ url_for('register_page') }}"> Register </a>
-    <a href="{{ url_for('delete_account_page') }}"> Delete </a>
-    <a href="{{ url_for('edit_page') }}"> Edit </a>
-    <a href="{{ url_for('logout') }}"> Logout </a>
-    <a href="{{ url_for('dashboard_page') }}"> Dashboard </a>
-    <a href="{{ url_for('legal_page') }}"> Legal </a>
-
-</div>
 {% block content %}{% endblock %}
 {% block scripts %}{% endblock %}
 </body>
