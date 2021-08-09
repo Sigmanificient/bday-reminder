@@ -23,11 +23,11 @@
   text-align: right;
   border-right: 2px solid colors.$white;
   background: linear-gradient(
-    317.35deg,
-    colors.$blue-400 -0.02%,
-    colors.$blue-400 0%,
-    colors.$blue-300 75%,
-    colors.$green 220%
+                  317.35deg,
+                  colors.$blue-400 -0.02%,
+                  colors.$blue-400 0%,
+                  colors.$blue-300 75%,
+                  colors.$green 220%
   );
 }
 
@@ -57,5 +57,17 @@ form#birthday_form {
       color: colors.$blue-800;
       padding: 0 40px;
     }
+  }
+}
+
+#description {
+  padding: 50px;
+  display: grid;
+  place-content: center;
+  color: colors.$blue-800;
+
+  p {
+    max-width: 75ch;
+    text-align: justify;
   }
 }
