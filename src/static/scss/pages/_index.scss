@@ -1,0 +1,11 @@
+@use "../base/colors";
+
+.left {
+  background: linear-gradient(
+    317.35deg,
+    colors.$blue-400 -0.02%,
+    colors.$blue-400 0%,
+    colors.$blue-300 76.27%,
+    colors.$green 216.67%
+  );
+}

@@ -1,2 +1,7 @@
 @use "base/colors";
+@use "base/reset";
 @use "base/typography";
+
+@use "components/buttons";
+@use "layout/header";
+@use "pages/index";

@@ -1,0 +1,7 @@
+@use "../base/colors";
+
+.btn {
+  padding: 2px 4px;
+  border: 1px solid colors.$white;
+  border-radius: 10px;
+}

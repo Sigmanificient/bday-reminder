@@ -1,0 +1,25 @@
+@use "../base/colors";
+
+header {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  height: 45px;
+  width: 100%;
+  top: 0;
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    width: 80%;
+  }
+
+  .right-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
