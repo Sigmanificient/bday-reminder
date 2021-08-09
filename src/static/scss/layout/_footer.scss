@@ -1,0 +1,24 @@
+@use "../base/colors";
+
+footer {
+  background: radial-gradient(circle at right, colors.$blue-400, colors.$blue-300) no-repeat;
+  padding: 20px;
+
+  color: colors.$white;
+  display: flex;
+  justify-content: flex-end;
+
+  .authors {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    padding-right: 20px;
+    margin-right: 20px;
+    border-right: 4px solid colors.$white;
+
+    p {
+      user-select: none;
+      margin: 0;
+    }
+  }
+}
