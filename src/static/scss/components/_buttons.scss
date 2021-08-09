@@ -1,7 +1,8 @@
 @use "../base/colors";
 
 .btn {
-  padding: 2px 4px;
-  border: 1px solid colors.$white;
+  padding: 4px 8px;
+  color: colors.$white;
+  border: 2px solid colors.$white;
   border-radius: 10px;
 }

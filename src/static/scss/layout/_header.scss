@@ -5,12 +5,13 @@ header {
   display: flex;
   justify-content: center;
   position: fixed;
-  height: 45px;
+  height: 80px;
   width: 100%;
   top: 0;
 
   nav {
     display: flex;
+    color: colors.$white;
     align-items: center;
     justify-content: space-between;
     flex-flow: row wrap;
@@ -21,5 +22,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    gap: 20px;
   }
 }

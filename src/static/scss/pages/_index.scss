@@ -1,11 +1,61 @@
 @use "../base/colors";
 
+.landing {
+  color: colors.$white;
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+
+  @media (min-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  & > div {
+    @media (min-width: 1200px) {
+      display: grid;
+      place-content: center;
+    }
+    padding: clamp(20px, 6vw, 50px);
+  }
+}
+
 .left {
+  text-align: right;
+  border-right: 2px solid colors.$white;
   background: linear-gradient(
     317.35deg,
     colors.$blue-400 -0.02%,
     colors.$blue-400 0%,
-    colors.$blue-300 76.27%,
-    colors.$green 216.67%
+    colors.$blue-300 75%,
+    colors.$green 220%
   );
+}
+
+.right {
+  background: colors.$blue-300;
+}
+
+form#birthday_form {
+  display: flex;
+  align-items: center;
+  max-width: max-content;
+  border: 2px solid colors.$white;
+  border-radius: 10px;
+  height: 40px;
+
+  input {
+    height: 100%;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    &[type="text"] {
+      color: colors.$white;
+      padding: 0 20px;
+    }
+
+    &[type="submit"] {
+      color: colors.$blue-800;
+      padding: 0 40px;
+    }
+  }
 }
