@@ -1,2 +1,2 @@
-Flask ~= 2.0.1
-click~=8.0.1
+Flask==2.0.1
+Flask-SQLAlchemy==2.5.1
