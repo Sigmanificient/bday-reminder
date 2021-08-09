@@ -5,17 +5,67 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Index page</h1>
-    <h2> Search a birthday</h2>
+    <div class="landing">
+        <div class="left">
+            <h1 class="title">
+                Vous <strong>oubliez</strong> souvent les
+                <strong>anniversaires</strong> de vos <strong>potes</strong>?
+            </h1>
 
-    <form id='birthday_form'>
-        <input
-            id="search"
-            type="text"
-            name="search"
-            placeholder="search a birthday"
-        >
-        <input type="submit" value="search">
-    </form>
+            <h2>Ne les oubliez plus avec <br> <strong>Bday Reminder</strong>
+            </h2>
+
+            <section class="wrapper">
+                <a class="btn" href="#description">En savoir plus</a>
+            </section>
+        </div>
+        <div class="right">
+            <h1 class="search">
+                <strong>Recherchez</strong> une date d'anniversaire
+            </h1>
+            <form id='birthday_form'>
+                <input
+                        id="search"
+                        type="text"
+                        name="search"
+                        placeholder="search a birthday"
+                >
+                <input type="submit" value="search">
+            </form>
+        </div>
+    </div>
+
+    <section id="description" class="container">
+        <section class="card">
+            <h1>Qu'est-ce que <strong>Bday Reminder</strong>?</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Architecto deleniti eum fugiat modi nihil
+                nulla
+                tempora! Eos porro reiciendis sint.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+                aperiam assumenda consequatur delectus
+                deserunt dignissimos dolor dolore doloribus eius eveniet
+                explicabo hic laboriosam maxime neque
+                nesciunt
+                nulla officia pariatur placeat possimus, praesentium quas
+                repellendus sint tempore temporibus
+                tenetur
+                totam unde vel vitae voluptatem voluptatibus? Fugiat iste nisi
+                porro provident sapiente.</p>
+        </section>
+    </section>
+
+    <footer>
+        <section class="authors">
+            <p>By
+                <a class="github" href="https://github.com/Corentin384">Coco</a>
+                &
+                <a class="github" href="https://github.com/Sigmanificient">Sigmanificient</a>
+            </p>
+        </section>
+        <a class="turn" href="https://github.com/Corentin384/bday-reminder">
+            <img src="../static/svg/github_icon.svg" alt="Github repository">
+        </a>
+    </footer>
 
 {% endblock %}
