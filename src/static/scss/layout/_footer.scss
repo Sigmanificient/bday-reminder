@@ -1,7 +1,7 @@
 @use "../base/colors";
 
 footer {
-  background: radial-gradient(circle at right, colors.$blue-400, colors.$blue-300) no-repeat;
+  background: radial-gradient(circle at right, colors.$blue-400, colors.$blue-300);
   padding: 20px;
 
   color: colors.$white;
@@ -14,7 +14,7 @@ footer {
     text-align: right;
     padding-right: 20px;
     margin-right: 20px;
-    border-right: 4px solid colors.$white;
+    border-right: 2px solid #e7eef3;
 
     p {
       user-select: none;

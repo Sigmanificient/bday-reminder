@@ -5,6 +5,23 @@ body {
   font-family: 'Poppins', 'Arial', sans-serif;
 }
 
+h1 {
+  font-size: 3em;
+}
+
+h2 strong {
+  font-size: 1.2em;
+}
+
+input {
+  font-size: 1.1em;
+}
+
+p {
+  max-width: 75ch;
+  text-align: justify;
+}
+
 .btn {
   font-size: 1.1em;
 }
@@ -12,16 +29,4 @@ body {
 .very-big {
   font-size: 1.8em;
   font-weight: 800;
-}
-
-.title {
-  font-size: 3em;
-}
-
-h1.search {
-  font-size: 3em;
-}
-
-input {
-  font-size: 1.1em;
 }

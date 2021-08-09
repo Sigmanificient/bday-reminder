@@ -1,10 +1,22 @@
 @use "../base/colors";
 
+
 .landing {
-  color: colors.$white;
   width: 100%;
   min-height: 100vh;
   display: grid;
+
+  color: colors.$green;
+
+  h1 strong {
+    color: colors.$white;
+    text-decoration: underline dotted;
+  }
+
+  h2 strong {
+    color: colors.$white;
+    text-transform: uppercase;
+  }
 
   @media (min-width: 1200px) {
     grid-template-columns: 1fr 1fr;
@@ -21,14 +33,13 @@
 
 .left {
   text-align: right;
-  border-right: 2px solid colors.$white;
-  background: linear-gradient(
-                  317.35deg,
-                  colors.$blue-400 -0.02%,
-                  colors.$blue-400 0%,
-                  colors.$blue-300 75%,
-                  colors.$green 220%
-  );
+  background: linear-gradient(317.35deg, colors.$blue-400 -0.02%, colors.$blue-400 0%, colors.$blue-300 75%, colors.$green 220%);
+  border-bottom: 2px solid colors.$white;
+
+  @media (min-width: 1200px) {
+    border-right: 2px solid colors.$white;
+    border-bottom: 0;
+  }
 }
 
 .right {
@@ -66,8 +77,9 @@ form#birthday_form {
   place-content: center;
   color: colors.$blue-800;
 
-  p {
-    max-width: 75ch;
-    text-align: justify;
+
+  strong {
+    color: colors.$blue-400;
+    text-decoration: underline dotted;
   }
 }
