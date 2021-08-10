@@ -71,12 +71,11 @@ form#birthday_form {
   max-width: max-content;
   border: 2px solid colors.$white;
   border-radius: 10px;
+  overflow: hidden;
   height: 40px;
 
   input {
     height: 100%;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
 
     &[type="text"] {
       color: colors.$white;
@@ -116,4 +115,8 @@ form#birthday_form {
       background-color: transparent;
     }
   }
+}
+
+.github {
+  display: contents;
 }
