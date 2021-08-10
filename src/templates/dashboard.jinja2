@@ -6,7 +6,18 @@
 
 {% block content %}
     <div class="left">
+        <div class="up">
+            <h2>Compte</h2>
+            <div class="info_compte">
+                <p>Date d'anniversaire : {{ session['user']['birthday'] }}</p>
+            </div>
 
+        </div>
+        <div class="down">
+            <a href="{{ url_for('edit') }}">Changer de pseudo</a>
+            <a href="{{ url_for('edit') }}">Changer de mot de passe</a>
+            <a href="{{ url_for('delete') }}">Supprimer le compte</a>
+        </div>
     </div>
     <div class="right">
         <h1>Bienvenue {{ session['user']['name'] }} !</h1>
