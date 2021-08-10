@@ -1,7 +1,8 @@
 @use "../base/colors";
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="date"] {
   width: min(30vw, 360px);
   color: colors.$blue-400;
   border: 2px solid colors.$blue-400;

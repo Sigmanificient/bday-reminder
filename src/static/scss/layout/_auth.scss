@@ -19,6 +19,9 @@
   }
 
   label {
+    display: flex;
+    flex-flow: row wrap;
+    grid-gap: 2em;
     width: 100%;
 
     input {
