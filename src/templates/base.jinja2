@@ -16,17 +16,16 @@
 <body>
 
 <header>
-    <nav>
-        <a class="very-big underline" href="/">Bday Reminder</a>
+    <a class="underline" href="/">Bday Reminder</a>
 
-        <div class="right-nav">
-            {% if session['user'] %}
-                <a class="btn" href="{{ url_for('dashboard_page') }}">Dashboard</a>
-            {% else %}
-                <a class="btn" href="{{ url_for('login_page') }}">Log In</a>
-                <a class="btn" href="{{ url_for('register_page') }}">Sign up</a>
-            {% endif %}
-        </div>
+    <nav class="right-nav">
+        {% if session['user'] %}
+            <a class="underline" href="{{ url_for('dashboard_page') }}">Dashboard</a>
+            <a class="underline" href="{{ url_for('logout') }}">Déconnexion</a>
+        {% else %}
+            <a class="underline" href="{{ url_for('login_page') }}">Connexion</a>
+            <a class="underline" href="{{ url_for('register_page') }}">Inscription</a>
+        {% endif %}
     </nav>
 </header>
 

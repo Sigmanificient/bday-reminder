@@ -3,25 +3,21 @@
 header {
   z-index: 2;
   display: flex;
-  justify-content: center;
+  color: colors.$blue-800;
+  background-color: colors.$white;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
-  height: 80px;
-  width: 100%;
+  padding: 0 40px;
+  height: 45px;
+  width: calc(100% - 80px);
   top: 0;
 
   nav {
     display: flex;
-    color: colors.$white;
     align-items: center;
     justify-content: space-between;
     flex-flow: row wrap;
-    width: 80%;
-  }
-
-  .right-nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 20px;
+    gap: 40px;
   }
 }
