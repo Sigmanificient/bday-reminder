@@ -73,7 +73,8 @@ def login_page():
             if login is not None:
                 session['user'] = {
                     'name': username,
-                    'id': login.id
+                    'id': login.id,
+                    'birthday': login.birthday
                 }
 
                 return redirect(url_for('dashboard_page'))
