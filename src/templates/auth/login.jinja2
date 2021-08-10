@@ -1,16 +1,23 @@
 {% extends 'base.jinja2' %}
 
 {% block content %}
-    <h1>Connexion</h1>
+    <div class="auth">
+        <h1>Connexion</h1>
 
-    <form method="post" action="{{ url_for('login_page') }}">
-        <label for="username">
-            <input type="text" name="username" placeholder="pseudo">
-        </label>
-        <label for="password">
-            <input type="password" name="password" placeholder="mot de passe">
-        </label>
-        <input type="submit" value="connexion">
+        <form method="post" action="{{ url_for('login_page') }}">
+            <label for="username">
+                <input type="text" name="username" placeholder="pseudo">
+            </label>
+            <label for="password">
+                <input type="password" name="password"
+                       placeholder="mot de passe">
+            </label>
+            <div class="actions">
+                <input type="reset" value="Annuler" accesskey="r">
+                <input type="submit" value="connexion">
+            </div>
+
+        </form>
         <a href="{{ url_for('register_page') }}">Pas de compte ? Créez-en un !</a>
-    </form>
+    </div>
 {% endblock %}

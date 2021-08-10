@@ -14,7 +14,6 @@
     <title>{{ title }}</title>
 </head>
 <body>
-
 <header>
     <a class="underline" href="/">Bday Reminder</a>
 
@@ -29,7 +28,10 @@
     </nav>
 </header>
 
-{% block content %}{% endblock %}
+<main>
+    {% block content %}{% endblock %}
+</main>
+
 {% block scripts %}{% endblock %}
 </body>
 </html>
