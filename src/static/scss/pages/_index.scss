@@ -72,18 +72,28 @@ form#birthday_form {
   border: 2px solid colors.$white;
   border-radius: 10px;
   overflow: hidden;
-  height: 40px;
+  height: 45px;
+  position: relative;
 
   input {
+    font-weight: 500;
     height: 100%;
 
-    &[type="text"] {
+    &#search {
+      background: transparent;
       color: colors.$white;
       padding: 0 20px;
+      width: min(60%, 200px);
+
+      &::placeholder {
+        color: colors.$white;
+      }
     }
 
     &[type="submit"] {
-      color: colors.$blue-800;
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      color: colors.$blue-400;
       padding: 0 40px;
     }
   }
