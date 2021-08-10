@@ -18,9 +18,14 @@
 <header>
     <nav>
         <a class="very-big underline" href="/">Bday Reminder</a>
+
         <div class="right-nav">
-            <a class="btn" href="{{ url_for('login_page') }}">Log In</a>
-            <a class="btn" href="{{ url_for('register_page') }}">Sign up</a>
+            {% if session['user'] %}
+                <a class="btn" href="{{ url_for('dashboard_page') }}">Dashboard</a>
+            {% else %}
+                <a class="btn" href="{{ url_for('login_page') }}">Log In</a>
+                <a class="btn" href="{{ url_for('register_page') }}">Sign up</a>
+            {% endif %}
         </div>
     </nav>
 </header>
