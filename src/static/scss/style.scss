@@ -3,8 +3,11 @@
 @use "base/typography";
 
 @use "components/buttons";
+@use "components/input";
 
+@use "layout/auth";
 @use "layout/header";
 @use "layout/footer";
 
 @use "pages/index";
+@use "pages/login";

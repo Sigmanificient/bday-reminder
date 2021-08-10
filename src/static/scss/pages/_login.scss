@@ -1,0 +1,5 @@
+@use "../base/colors";
+
+.container {
+  background: radial-gradient(100% 229.89% at 100% 0%, colors.$blue-400 0%, #372DFD 100%);
+}
