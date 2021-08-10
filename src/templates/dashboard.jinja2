@@ -5,37 +5,42 @@
 {% endblock scripts %}
 
 {% block content %}
-    <p>dashboard page</p>
-    <h2>Register a birthday</h2>
+    <div class="left">
 
-    <form method="post" action="{{ url_for('dashboard_page') }}">
-        <label for="username">
-            <input type="text" name="username" placeholder="username">
-        </label>
-        <label for="date">
-            <input type="date" name="date" placeholder="birthday">
-        </label>
-        <input type="submit" value="Add">
-    </form>
-    <h2>Today's Birthday</h2>
-    <div>
-        {% for today_birthday in today_birthdays %}
-            <div>{{ today_birthday.person_name }}</div>
-            <hr>
-        {% endfor %}
     </div>
-
-    <h2>Birthday you a have registered</h2>
-    <div>
-        {% for birthday in birthdays %}
+    <div class="right">
+        <h1>Bienvenue {{ session['user']['name'] }} !</h1>
+        <div class="today_list">
+            <h2>Joyeux Anniversaire !</h2>
             <div>
-                <div>{{ birthday.person_name }}</div>
-                <div>{{ birthday.person_birthday }}</div>
-
-                <button data-id="{{ birthday.id }}">Delete</button>
-                <hr>
+                {% for today_birthday in today_birthdays %}
+                    <div>{{ today_birthday.person_name }}</div>
+                    <hr>
+                {% endfor %}
             </div>
-        {% endfor %}
-    </div>
+        </div>
+        <div class="birthday_list">
+            <h2>Anniversaire que vous avez enregistrer </h2>
+            <form method="post" action="{{ url_for('dashboard_page') }}">
+                <label for="username">
+                    <input type="text" name="username" placeholder="username">
+                </label>
+                <label for="date">
+                    <input type="date" name="date" placeholder="birthday">
+                </label>
+                <input type="submit" value="Add">
+            </form>
+            <div>
+                {% for birthday in birthdays %}
+                    <div>
+                        <div>{{ birthday.person_name }}</div>
+                        <div>{{ birthday.person_birthday }}</div>
 
+                        <button data-id="{{ birthday.id }}">Delete</button>
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
