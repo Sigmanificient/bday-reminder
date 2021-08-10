@@ -1,0 +1,12 @@
+@use "../base/colors";
+
+input[type="text"],
+input[type="password"] {
+  width: min(30vw, 360px);
+  color: colors.$blue-400;
+  border: 2px solid colors.$blue-400;
+  background-color: colors.$white;
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 8px 16px;
+}
