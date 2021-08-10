@@ -1,29 +1,29 @@
 {% extends 'base.jinja2' %}
 
 {% block content %}
-    <h1>Edit</h1>
-    <h2>Change password</h2>
+    <h1>Paramètres</h1>
+    <h2>Changer votre mot de passe</h2>
     <form method="POST" action="{{ url_for('edit_page') }}">
         <label for="old_password">
-            <input type="password" name="old_password" placeholder="old password">
+            <input type="password" name="old_password" placeholder="Ancien mot de passe">
         </label>
         <label for="new_password">
-            <input type="password" name="new_password" placeholder="new password">
+            <input type="password" name="new_password" placeholder="nouveau mot de passe">
         </label>
         <label for="confirm_new_password">
-            <input type="password" name="confirm_new_password" placeholder="confirm new password">
+            <input type="password" name="confirm_new_password" placeholder="confirmer le nouveau mot de passe">
         </label>
-        <input type="submit" value="Change">
+        <input type="submit" value="Changer">
     </form>
 
-    <h2>Change username</h2>
+    <h2>Changer votre pseudo</h2>
     <form method="POST" action="{{ url_for('edit_page') }}">
         <label for="new_username">
-            <input type="text" name="new_username" placeholder="new username">
+            <input type="text" name="new_username" placeholder="nouveau pseudo">
         </label>
         <label for="confirm_new_username">
-            <input type="text" name="confirm_new_username" placeholder="confirm new username">
+            <input type="text" name="confirm_new_username" placeholder="confirmer le nouveau pseudo">
         </label>
-        <input type="submit" value="Change">
+        <input type="submit" value="Changer">
     </form>
 {% endblock %}

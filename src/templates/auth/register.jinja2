@@ -1,19 +1,19 @@
 {% extends 'base.jinja2' %}
 
 {% block content %}
-    <h1>Register your account</h1>
+    <h1>Créer votre compte</h1>
 
     <form method="post" action="{{ url_for('register_page') }}">
         <label for="username">
-            <input type="text" name="username" placeholder="username" pattern="{{ USERNAME_PATTERN }}">
+            <input type="text" name="username" placeholder="pseudo" pattern="{{ USERNAME_PATTERN }}">
         </label>
         <label for="password">
-            <input type="password" name="password" placeholder="password" pattern="{{ PASSWORD_PATTERN }}">
-            <input type="password" name="confirm_password" placeholder="confirm_password" pattern="{{ PASSWORD_PATTERN }}">
+            <input type="password" name="password" placeholder="mot de passe" pattern="{{ PASSWORD_PATTERN }}">
+            <input type="password" name="confirm_password" placeholder="confirmer le mot de passe" pattern="{{ PASSWORD_PATTERN }}">
         </label>
         <label for="date">
-            <input type="date" name="date" placeholder="birthday">
+            <input type="date" name="date" placeholder="date de naissance">
         </label>
-        <input type="submit" value="Register">
+        <input type="submit" value="Créer">
     </form>
 {% endblock %}
