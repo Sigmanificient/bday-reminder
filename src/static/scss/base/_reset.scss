@@ -2,23 +2,29 @@
   scroll-behavior: smooth;
 }
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+}
+
+footer,
+header,
+nav,
+section,
+main {
+  display: block;
+}
+
+input {
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-input {
-
-  &[type="text"] {
-    background: none;
-    border: none;
-  }
-
-  &[type="submit"] {
-    border: none;
-  }
 }
