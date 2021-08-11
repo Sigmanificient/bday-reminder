@@ -1,4 +1,4 @@
-from . import db
+from bday_reminder import db
 
 
 class Birthday(db.Model):

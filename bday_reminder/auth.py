@@ -5,9 +5,9 @@ from flask import (
     Blueprint, render_template, request, redirect, session, url_for
 )
 
-from . import db
-from .models import Birthday, User
-from .security import sha512
+from bday_reminder import db
+from bday_reminder.models import Birthday, User
+from bday_reminder.security import sha512
 
 USERNAME_PATTERN = r'^([\w\d-]){4,32}$'
 PASSWORD_PATTERN = (

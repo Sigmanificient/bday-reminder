@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
-
-from . import User
+from bday_reminder.models import User
 
 views = Blueprint("views", __name__)
 
