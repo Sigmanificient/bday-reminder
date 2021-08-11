@@ -2,6 +2,7 @@ from bday_reminder import db
 
 
 class Birthday(db.Model):
+    """A Table to store user's friends birthdays."""
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer)
     person_name = db.Column(db.String(32))
@@ -9,6 +10,7 @@ class Birthday(db.Model):
 
 
 class User(db.Model):
+    """A Table to store user's app accounts."""
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     pseudo = db.Column(db.String(32))
     password = db.Column(db.String(128))
