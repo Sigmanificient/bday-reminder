@@ -17,13 +17,18 @@ PASSWORD_PATTERN = (
     r'^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_ @#$%^&+=]).*$'
 )
 
+Json = Dict
+Redirect = Response
 UserDict = Dict[str, Dict[str, str]]
+WebPage = str
+
+Redirect_or_Webpage = Union[Redirect, WebPage]
 
 auth = Blueprint("auth", __name__)
 
 
 @auth.route('/auth/login', methods=('GET', 'POST'))
-def login_page() -> Union[Response, str]:
+def login_page() -> Redirect_or_Webpage:
     """The page for user to authenticate."""
     if session.get('user'):
         return redirect(url_for('dashboard_page'))
@@ -51,7 +56,7 @@ def login_page() -> Union[Response, str]:
 
 
 @auth.route('/auth/register', methods=('GET', 'POST'))
-def register_page() -> Union[Response, str]:
+def register_page() -> Redirect_or_Webpage:
     """A page for user registration."""
     if session.get('user'):
         return redirect(url_for('dashboard_page'))
@@ -89,7 +94,7 @@ def register_page() -> Union[Response, str]:
 
 
 @auth.route('/dashboard', methods=('GET', 'POST'))
-def dashboard_page():
+def dashboard_page() -> Redirect_or_Webpage:
     """The main webapp dashboard page very every features."""
     user: UserDict = session.get('user')
 
@@ -129,7 +134,7 @@ def dashboard_page():
 
 
 @auth.route('/auth/edit', methods=('GET', 'POST'))
-def edit_page() -> Union[Response, str]:
+def edit_page() -> Redirect_or_Webpage:
     """A page for the user to change their profile or password."""
     user: UserDict = session.get('user')
 
@@ -173,7 +178,7 @@ def edit_page() -> Union[Response, str]:
 
 
 @auth.route('/auth/delete', methods=('GET', 'POST'))
-def delete_account_page() -> Union[Response, str]:
+def delete_account_page() -> Redirect_or_Webpage:
     """A page for the user to delete their account."""
     user: UserDict = session.get('user')
 
@@ -196,7 +201,7 @@ def delete_account_page() -> Union[Response, str]:
 
 
 @auth.route('/delete/<index>')
-def delete_user(index: str) -> Dict:
+def delete_user(index: str) -> Json:
     """The account deletion endpoint."""
     user: UserDict = session.get('user')
 
@@ -220,7 +225,7 @@ def delete_user(index: str) -> Dict:
 
 
 @auth.route('/logout/')
-def logout() -> Response:
+def logout() -> Redirect:
     """The endpoint for the user to sign out."""
     if session.get('user'):
         session.pop('user')
