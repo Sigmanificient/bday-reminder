@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Paramètres</h1>
     <h2>Changer votre mot de passe</h2>
-    <form method="POST" action="{{ url_for('edit_page') }}">
+    <form method="POST" action="{{ url_for('auth.edit_page') }}">
         <label for="old_password">
             <input type="password" name="old_password" placeholder="Ancien mot de passe">
         </label>
@@ -19,7 +19,7 @@
     </form>
 
     <h2>Changer votre pseudo</h2>
-    <form method="POST" action="{{ url_for('edit_page') }}">
+    <form method="POST" action="{{ url_for('auth.edit_page') }}">
         <label for="new_username">
             <input type="text" name="new_username" placeholder="nouveau pseudo">
         </label>

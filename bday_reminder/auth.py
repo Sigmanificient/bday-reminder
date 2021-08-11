@@ -1,68 +1,41 @@
+"""All pages that require user authentication or are auth related."""
+
 import re
-import secrets
 from datetime import datetime
+from typing import Dict, Union
 
-from flask import Flask, render_template, redirect, url_for, request, session
-from flask_sqlalchemy import SQLAlchemy
+from flask import (
+    Blueprint, render_template, request, redirect, session, url_for, Response
+)
 
-from src.security import sha512
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bday.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-app.config.from_object(__name__)
-app.secret_key = secrets.token_urlsafe(32)
+from bday_reminder import db
+from bday_reminder.models import Birthday, User
+from bday_reminder.security import sha512
 
 USERNAME_PATTERN = r'^([\w\d-]){4,32}$'
 PASSWORD_PATTERN = (
     r'^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_ @#$%^&+=]).*$'
 )
 
+Json = Dict
+Redirect = Response
+UserDict = Dict[str, Dict[str, str]]
+WebPage = str
 
-# DB Model
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    pseudo = db.Column(db.String(32))
-    password = db.Column(db.String(128))
-    birthday = db.Column(db.String(10), default=None)
+Redirect_or_Webpage = Union[Redirect, WebPage]
 
-
-class Birthday(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer)
-    person_name = db.Column(db.String(32))
-    person_birthday = db.Column(db.String(10))
+auth = Blueprint("auth", __name__)
 
 
-db.drop_all()
-db.create_all()
-
-dummy_user = User(
-    pseudo="dummy",
-    password=(
-        "ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac185"
-        "f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff"
-    ),
-    birthday="2001-12-11"
-)
-db.session.add(dummy_user)
-db.session.commit()
-
-
-@app.route('/', methods=('GET', 'POST'))
-def index_page():
-    return render_template('index.jinja2')
-
-
-@app.route('/auth/login', methods=('GET', 'POST'))
-def login_page():
+@auth.route('/auth/login', methods=('GET', 'POST'))
+def login_page() -> Redirect_or_Webpage:
+    """The page for user to authenticate."""
     if session.get('user'):
         return redirect(url_for('dashboard_page'))
+
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username: str = request.form['username']
+        password: str = request.form['password']
 
         if username and password:
             login = User.query.filter_by(
@@ -82,18 +55,20 @@ def login_page():
     return render_template('auth/login.jinja2')
 
 
-@app.route('/auth/register', methods=('GET', 'POST'))
-def register_page():
+@auth.route('/auth/register', methods=('GET', 'POST'))
+def register_page() -> Redirect_or_Webpage:
+    """A page for user registration."""
     if session.get('user'):
         return redirect(url_for('dashboard_page'))
+
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        confirm_password = request.form['confirm_password']
-        birthday = request.form['date']
+        username: str = request.form['username']
+        password: str = request.form['password']
+        confirm_password: str = request.form['confirm_password']
+        birthday: str = request.form['date']
 
         if (
-                re.match(USERNAME_PATTERN, username)
+            re.match(USERNAME_PATTERN, username)
                 and re.match(PASSWORD_PATTERN, password)
                 and confirm_password
                 and confirm_password == password
@@ -118,9 +93,10 @@ def register_page():
     )
 
 
-@app.route('/dashboard', methods=('GET', 'POST'))
-def dashboard_page():
-    user = session.get('user')
+@auth.route('/dashboard', methods=('GET', 'POST'))
+def dashboard_page() -> Redirect_or_Webpage:
+    """The main webapp dashboard page very every features."""
+    user: UserDict = session.get('user')
 
     if not user:
         return redirect(url_for('login_page'))
@@ -129,8 +105,8 @@ def dashboard_page():
         return redirect(url_for('login_page'))
 
     if request.method == 'POST':
-        username = request.form['username']
-        date = request.form['date']
+        username: str = request.form['username']
+        date: str = request.form['date']
 
         if username and date:
             new_birthday = Birthday(
@@ -143,14 +119,13 @@ def dashboard_page():
             db.session.commit()
 
     birthdays = Birthday.query.filter_by(user_id=user.get('id')).all()
-    now = datetime.now()
+    now: datetime = datetime.now()
 
     return render_template(
         'dashboard.jinja2',
         birthdays=birthdays,
         today_birthdays=[
-            birthday
-            for birthday in birthdays
+            birthday for birthday in birthdays
             if birthday.person_birthday.endswith(
                 f'-{now.month:02}-{now.day:02}'
             )
@@ -158,32 +133,10 @@ def dashboard_page():
     )
 
 
-@app.route('/auth/delete', methods=('GET', 'POST'))
-def delete_account_page():
-    user = session.get('user')
-
-    if not user:
-        return redirect(url_for('login_page'))
-
-    if not user.get('name'):
-        return redirect(url_for('login_page'))
-    if request.method == 'POST' and user.get('name') == request.form.get(
-            'account_name'
-    ):
-        db.session.delete(User.query.filter_by(pseudo=user.get('name')).first())
-        db.session.commit()
-        return redirect(url_for('logout'))
-    return render_template('auth/delete.jinja2')
-
-
-@app.route('/legal')
-def legal_page():
-    return render_template('legal.jinja2')
-
-
-@app.route('/auth/edit', methods=('GET', 'POST'))
-def edit_page():
-    user = session.get('user')
+@auth.route('/auth/edit', methods=('GET', 'POST'))
+def edit_page() -> Redirect_or_Webpage:
+    """A page for the user to change their profile or password."""
+    user: UserDict = session.get('user')
 
     if not user:
         return redirect(url_for('login_page'))
@@ -198,9 +151,9 @@ def edit_page():
             old_password = request.form['old_password']
 
             if (
-                    User.query.filter_by(
-                        pseudo=user.get('name'), password=sha512(old_password)
-                    ).first()
+                User.query.filter_by(
+                    pseudo=user.get('name'), password=sha512(old_password)
+                ).first()
                     and new_password == confirm_password
             ):
                 user = User.query.filter_by(pseudo=user.get('name')).first()
@@ -208,11 +161,11 @@ def edit_page():
                 db.session.commit()
 
         elif request.form.get('new_username'):
-            new_username = request.form['new_username']
-            confirm_username = request.form['confirm_new_username']
+            new_username: str = request.form['new_username']
+            confirm_username: str = request.form['confirm_new_username']
 
             if (
-                    new_username == confirm_username
+                new_username == confirm_username
                     and not User.query.filter_by(pseudo=new_username).first()
             ):
                 user = User.query.filter_by(pseudo=user.get('name')).first()
@@ -224,17 +177,39 @@ def edit_page():
     return render_template('auth/edit.jinja2')
 
 
-@app.route('/delete/<index>')
-def delete_user(index):
-    user = session.get('user')
+@auth.route('/auth/delete', methods=('GET', 'POST'))
+def delete_account_page() -> Redirect_or_Webpage:
+    """A page for the user to delete their account."""
+    user: UserDict = session.get('user')
 
     if not user:
-        return {}
+        return redirect(url_for('login_page'))
 
     if not user.get('name'):
-        return {}
+        return redirect(url_for('login_page'))
 
-    if not index.isdigit():
+    if (
+        request.method == 'POST'
+            and user.get('name') == request.form.get('account_name')
+    ):
+        db.session.delete(User.query.filter_by(pseudo=user.get('name')).first())
+        db.session.commit()
+
+        return redirect(url_for('logout'))
+
+    return render_template('auth/delete.jinja2')
+
+
+@auth.route('/delete/<index>')
+def delete_user(index: str) -> Json:
+    """The account deletion endpoint."""
+    user: UserDict = session.get('user')
+
+    if (
+        not user
+            or not user.get('name')
+            or not index.isdigit()
+    ):
         return {}
 
     db.session.delete(
@@ -249,26 +224,10 @@ def delete_user(index):
     return {}
 
 
-@app.route('/api/search/<user>')
-def search_user(user):
-    found_user: User = User.query.filter_by(pseudo=user).first()
-    if not found_user:
-        return {}
-
-    return {
-        'id': found_user.id,
-        'name': found_user.pseudo,
-        'birthday': found_user.birthday
-    }
-
-
-@app.route('/logout/')
-def logout():
+@auth.route('/logout/')
+def logout() -> Redirect:
+    """The endpoint for the user to sign out."""
     if session.get('user'):
         session.pop('user')
 
     return redirect(url_for('index_page'))
-
-
-if __name__ == '__main__':
-    app.run(debug=True)

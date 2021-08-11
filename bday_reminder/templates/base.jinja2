@@ -27,11 +27,11 @@
 
     <nav class="right-nav">
         {% if session['user'] %}
-            <a class="underline" href="{{ url_for('dashboard_page') }}">Dashboard</a>
-            <a class="underline" href="{{ url_for('logout') }}">Déconnexion</a>
+            <a class="underline" href="{{ url_for('auth.dashboard_page') }}">Dashboard</a>
+            <a class="underline" href="{{ url_for('auth.logout') }}">Déconnexion</a>
         {% else %}
-            <a class="underline" href="{{ url_for('login_page') }}">Connexion</a>
-            <a class="underline" href="{{ url_for('register_page') }}">Inscription</a>
+            <a class="underline" href="{{ url_for('auth.login_page') }}">Connexion</a>
+            <a class="underline" href="{{ url_for('auth.register_page') }}">Inscription</a>
         {% endif %}
     </nav>
 </header>
