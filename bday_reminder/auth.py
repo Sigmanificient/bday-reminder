@@ -1,8 +1,9 @@
 import re
 from datetime import datetime
+from typing import Dict, Union
 
 from flask import (
-    Blueprint, render_template, request, redirect, session, url_for
+    Blueprint, render_template, request, redirect, session, url_for, Response
 )
 
 from bday_reminder import db
@@ -14,16 +15,19 @@ PASSWORD_PATTERN = (
     r'^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_ @#$%^&+=]).*$'
 )
 
+UserDict = Dict[str, Dict[str, str]]
+
 auth = Blueprint("auth", __name__)
 
 
 @auth.route('/auth/login', methods=('GET', 'POST'))
-def login_page():
+def login_page() -> Union[Response, str]:
     if session.get('user'):
         return redirect(url_for('dashboard_page'))
+
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username: str = request.form['username']
+        password: str = request.form['password']
 
         if username and password:
             login = User.query.filter_by(
@@ -44,21 +48,22 @@ def login_page():
 
 
 @auth.route('/auth/register', methods=('GET', 'POST'))
-def register_page():
+def register_page() -> Union[Response, str]:
     if session.get('user'):
         return redirect(url_for('dashboard_page'))
+
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        confirm_password = request.form['confirm_password']
-        birthday = request.form['date']
+        username: str = request.form['username']
+        password: str = request.form['password']
+        confirm_password: str = request.form['confirm_password']
+        birthday: str = request.form['date']
 
         if (
             re.match(USERNAME_PATTERN, username)
-            and re.match(PASSWORD_PATTERN, password)
-            and confirm_password
-            and confirm_password == password
-            and birthday
+                and re.match(PASSWORD_PATTERN, password)
+                and confirm_password
+                and confirm_password == password
+                and birthday
         ):
             new_user = User(
                 pseudo=username,
@@ -81,7 +86,7 @@ def register_page():
 
 @auth.route('/dashboard', methods=('GET', 'POST'))
 def dashboard_page():
-    user = session.get('user')
+    user: UserDict = session.get('user')
 
     if not user:
         return redirect(url_for('login_page'))
@@ -90,8 +95,8 @@ def dashboard_page():
         return redirect(url_for('login_page'))
 
     if request.method == 'POST':
-        username = request.form['username']
-        date = request.form['date']
+        username: str = request.form['username']
+        date: str = request.form['date']
 
         if username and date:
             new_birthday = Birthday(
@@ -104,14 +109,13 @@ def dashboard_page():
             db.session.commit()
 
     birthdays = Birthday.query.filter_by(user_id=user.get('id')).all()
-    now = datetime.now()
+    now: datetime = datetime.now()
 
     return render_template(
         'dashboard.jinja2',
         birthdays=birthdays,
         today_birthdays=[
-            birthday
-            for birthday in birthdays
+            birthday for birthday in birthdays
             if birthday.person_birthday.endswith(
                 f'-{now.month:02}-{now.day:02}'
             )
@@ -120,8 +124,8 @@ def dashboard_page():
 
 
 @auth.route('/auth/edit', methods=('GET', 'POST'))
-def edit_page():
-    user = session.get('user')
+def edit_page() -> Union[Response, str]:
+    user: UserDict = session.get('user')
 
     if not user:
         return redirect(url_for('login_page'))
@@ -136,9 +140,9 @@ def edit_page():
             old_password = request.form['old_password']
 
             if (
-                    User.query.filter_by(
-                        pseudo=user.get('name'), password=sha512(old_password)
-                    ).first()
+                User.query.filter_by(
+                    pseudo=user.get('name'), password=sha512(old_password)
+                ).first()
                     and new_password == confirm_password
             ):
                 user = User.query.filter_by(pseudo=user.get('name')).first()
@@ -146,11 +150,11 @@ def edit_page():
                 db.session.commit()
 
         elif request.form.get('new_username'):
-            new_username = request.form['new_username']
-            confirm_username = request.form['confirm_new_username']
+            new_username: str = request.form['new_username']
+            confirm_username: str = request.form['confirm_new_username']
 
             if (
-                    new_username == confirm_username
+                new_username == confirm_username
                     and not User.query.filter_by(pseudo=new_username).first()
             ):
                 user = User.query.filter_by(pseudo=user.get('name')).first()
@@ -163,34 +167,36 @@ def edit_page():
 
 
 @auth.route('/auth/delete', methods=('GET', 'POST'))
-def delete_account_page():
-    user = session.get('user')
+def delete_account_page() -> Union[Response, str]:
+    user: UserDict = session.get('user')
 
     if not user:
         return redirect(url_for('login_page'))
 
     if not user.get('name'):
         return redirect(url_for('login_page'))
-    if request.method == 'POST' and user.get('name') == request.form.get(
-            'account_name'
+
+    if (
+        request.method == 'POST'
+            and user.get('name') == request.form.get('account_name')
     ):
         db.session.delete(User.query.filter_by(pseudo=user.get('name')).first())
         db.session.commit()
+
         return redirect(url_for('logout'))
+
     return render_template('auth/delete.jinja2')
 
 
 @auth.route('/delete/<index>')
-def delete_user(index):
-    user = session.get('user')
+def delete_user(index: str) -> Dict:
+    user: UserDict = session.get('user')
 
-    if not user:
-        return {}
-
-    if not user.get('name'):
-        return {}
-
-    if not index.isdigit():
+    if (
+        not user
+            or not user.get('name')
+            or not index.isdigit()
+    ):
         return {}
 
     db.session.delete(
@@ -206,7 +212,7 @@ def delete_user(index):
 
 
 @auth.route('/logout/')
-def logout():
+def logout() -> Response:
     if session.get('user'):
         session.pop('user')
 

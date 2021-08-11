@@ -1,3 +1,5 @@
+from typing import Union, Dict, Optional
+
 from flask import Blueprint, render_template
 from bday_reminder.models import User
 
@@ -5,18 +7,19 @@ views = Blueprint("views", __name__)
 
 
 @views.route('/', methods=('GET', 'POST'))
-def index_page():
+def index_page() -> str:
     return render_template('index.jinja2')
 
 
 @views.route('/legal')
-def legal_page():
+def legal_page() -> str:
     return render_template('legal.jinja2')
 
 
 @views.route('/api/search/<user>')
-def search_user(user):
-    found_user = User.query.filter_by(pseudo=user).first()
+def search_user(user: str) -> Dict[str, Union[str, int]]:
+    found_user: Optional[User] = User.query.filter_by(pseudo=user).first()
+
     if not found_user:
         return {}
 
