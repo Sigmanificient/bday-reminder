@@ -6,7 +6,7 @@
     <div class="auth">
         <h1>Connexion</h1>
 
-        <form method="post" action="{{ url_for('login_page') }}">
+        <form method="post" action="{{ url_for('auth.login_page') }}">
             <label for="username">
                 <input type="text" name="username" placeholder="pseudo">
             </label>
@@ -20,6 +20,6 @@
             </div>
 
         </form>
-        <a href="{{ url_for('register_page') }}">Pas de compte ? Créez-en un !</a>
+        <a href="{{ url_for('auth.register_page') }}">Pas de compte ? Créez-en un !</a>
     </div>
 {% endblock %}

@@ -6,7 +6,7 @@
     <div class="auth">
         <h1>Créer votre compte</h1>
 
-        <form method="post" action="{{ url_for('register_page') }}">
+        <form method="post" action="{{ url_for('auth.register_page') }}">
             <label for="username">
                 <input type="text" name="username" placeholder="pseudo"
                        pattern="{{ USERNAME_PATTERN }}">

@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Supprimer votre compte</h1>
 
-    <form method="post" action="{{ url_for('delete_account_page') }}">
+    <form method="post" action="{{ url_for('auth.delete_account_page') }}">
         <label for="account_name">
             <input type="text" name="account_name" placeholder="confirmer le nom de votre compte">
         </label>
