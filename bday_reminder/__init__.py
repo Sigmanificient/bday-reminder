@@ -13,10 +13,11 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_PATH}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    db.init_app(app)
+    # Importing db models for the db to initialize.
+    from bday_reminder.models import Birthday, User
 
-    if not path.exists(DB_PATH):
-        db.create_all(app=app)
+    db.init_app(app=app)
+    db.create_all(app=app)
 
     from .views import views
     app.register_blueprint(views, url_prefix='/')
