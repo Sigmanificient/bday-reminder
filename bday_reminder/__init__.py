@@ -19,6 +19,7 @@ def create_app() -> Flask:
         # Importing db models for the db to initialize.
         from bday_reminder.models import Birthday, User
 
+        print("Creating DB with models", Birthday.__name__, User.__name__)
         db.create_all(app=app)
 
     from .views import views
