@@ -13,6 +13,7 @@ def create_app():
     app.config['SQL_ALCHEMY_DATABASE_URL'] = f'sqlite:///{DB_PATH}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+    from .models import Birthday, User
     db.init_app(app)
 
     if not path.exists(DB_PATH):
