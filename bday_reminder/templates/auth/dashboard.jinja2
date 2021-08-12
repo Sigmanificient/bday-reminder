@@ -26,7 +26,9 @@
             <h1>Bienvenue {{ session['user']['name'] }} !</h1>
             <div class="today_list">
                 <h2>Joyeux Anniversaire !</h2>
-                <p>{{ today_birthdays }}</p>
+                {% if today_birthdays %}
+                    <p>{{ today_birthdays }}</p>
+                {% endif %}
             </div>
             <div class="birthday_list">
                 <h2>Enregistrer un anniversaire</h2>

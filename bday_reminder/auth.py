@@ -126,13 +126,25 @@ def dashboard_page() -> Redirect_or_Webpage:
         if birthday.person_birthday.endswith(f'-{now.month:02}-{now.day:02}')
     ]
 
+    if not today_birthdays:
+        return render_template(
+            'auth/dashboard.jinja2',
+            birthdays=birthdays
+        )
+
+    if len(today_birthdays) == 1:
+        displayed = today_birthdays[-1]
+
+    else:
+        displayed = (
+            ', '.join(today_birthdays[:-1]) +
+            f' and {today_birthdays[-1]}' * (len(today_birthdays) > 2)
+        )
+
     return render_template(
         'auth/dashboard.jinja2',
         birthdays=birthdays,
-        today_birthdays=(
-            ', '.join(today_birthdays[:-1]) +
-            f' and {today_birthdays[-1]}' * (len(today_birthdays) > 1)
-        )
+        today_birthdays=displayed
     )
 
 
