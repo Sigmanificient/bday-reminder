@@ -1,10 +1,12 @@
 @use "../base/colors";
+
 .dashboard {
-  display:flex;
+  display: flex;
   min-height: 100vh;
   width: 100%;
   padding-top: 45px;
   color: colors.$white;
+  max-height: 100vh;
 
   .left {
     display: flex;
@@ -14,7 +16,9 @@
     text-align: left;
     padding-left: 80px;
     background-color: colors.$blue-400;
-    h2{
+    font-weight: bold;
+
+    h2 {
       font-size: 2em;
     }
   }
@@ -22,33 +26,72 @@
   .right {
     width: 70%;
     background: radial-gradient(76.34% 120.61% at 91.75% 16.11%, colors.$blue-300 0.05%, colors.$blue-400 100%);
-    .today_list{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+
+    .top {
+      display: grid;
+      place-content: center;
+
+      h1 {
+        margin-bottom: 0;
+      }
+
+      p.count {
+        font-size: 2em;
+        font-weight: bold;
+      }
+    }
+
+    .today_list {
       background-color: colors.$white;
       color: colors.$blue-800;
       border-radius: 10px;
       padding: 20px;
-      width: 80%;
+      min-width: 80%;
       display: grid;
       place-items: center;
-      div{
-        display: flex;
-        gap: 10px;
-        flex-flow: row wrap;
-        div::after{
-          content: ",";
-          transform: translate(-5px);
-        }
-      }
-      h2{
+      margin-left: 20px;
+
+      h2 {
         font-size: 2em;
+      }
+    }
+
+    .birthday_list {
+      background-color: colors.$white;
+      border-top-left-radius: 10px;
+      color: colors.$blue-800;
+      padding: 40px 20px 20px;
+      max-height: 30%;
+
+      .scroll_container {
+        overflow-y: scroll;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        & > div {
+          display: flex;
+          justify-content: space-around;
+          width: 100%;
+          font-size: 1.2em;
+        }
       }
     }
   }
 
-  .down{
+  .down {
     display: flex;
     flex-direction: column;
     padding-bottom: 80px;
     gap: 20px;
   }
+}
+
+form#add_birthday input:not([type = 'submit']) {
+  margin-right: 20px;
 }
