@@ -24,12 +24,16 @@
         </div>
         <div class="right">
             <h1>Bienvenue {{ session['user']['name'] }} !</h1>
-            <div class="today_list">
-                <h2>Joyeux Anniversaire !</h2>
-                {% if today_birthdays %}
-                    <p>{{ today_birthdays }}</p>
-                {% endif %}
-            </div>
+
+                <div class="today_list">
+                    {% if today_birthdays %}
+                        <h2>Joyeux Anniversaire !</h2>
+                        <p>{{ today_birthdays }}</p>
+                    {% else %}
+                        <h2>Pas d'anniversaire aujourd'hui !</h2>
+                    {% endif %}
+                </div>
+
             <div class="birthday_list">
                 <h2>Enregistrer un anniversaire</h2>
                 <form method="post" action="{{ url_for('auth.dashboard_page') }}">
