@@ -1,3 +1,4 @@
+import secrets
 from os import path
 
 from flask import Flask
@@ -12,6 +13,7 @@ def create_app() -> Flask:
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_PATH}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SECRET_KEY'] = secrets.token_hex(64)
 
     db.init_app(app=app)
 
