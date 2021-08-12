@@ -1,0 +1,54 @@
+@use "../base/colors";
+.dashboard {
+  display:flex;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 45px;
+  color: colors.$white;
+
+  .left {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    padding-left: 80px;
+    background-color: colors.$blue-400;
+    h2{
+      font-size: 2em;
+    }
+  }
+
+  .right {
+    width: 70%;
+    background: radial-gradient(76.34% 120.61% at 91.75% 16.11%, colors.$blue-300 0.05%, colors.$blue-400 100%);
+    .today_list{
+      background-color: colors.$white;
+      color: colors.$blue-800;
+      border-radius: 10px;
+      padding: 20px;
+      width: 80%;
+      display: grid;
+      place-items: center;
+      div{
+        display: flex;
+        gap: 10px;
+        flex-flow: row wrap;
+        div::after{
+          content: ",";
+          transform: translate(-5px);
+        }
+      }
+      h2{
+        font-size: 2em;
+      }
+    }
+  }
+
+  .down{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 80px;
+    gap: 20px;
+  }
+}

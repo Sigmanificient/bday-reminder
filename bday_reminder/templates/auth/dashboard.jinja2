@@ -7,52 +7,52 @@
 {% endblock scripts %}
 
 {% block content %}
-    <div class="left">
-        <div class="up">
-            <h2>Compte</h2>
-            <div class="info_compte">
-                <p>Date d'anniversaire : {{ session['user']['birthday'] }}</p>
-            </div>
+    <div class="dashboard">
+        <div class="left">
+            <div class="up">
+                <h2>Compte</h2>
+                <div class="info_compte">
+                    <p>Date d'anniversaire : {{ session['user']['birthday'] }}</p>
+                </div>
 
-        </div>
-        <div class="down">
-            <a href="{{ url_for('auth.edit_page') }}">Changer de pseudo</a>
-            <a href="{{ url_for('auth.edit_page') }}">Changer de mot de passe</a>
-            <a href="{{ url_for('auth.delete_account_page') }}">Supprimer le compte</a>
-        </div>
-    </div>
-    <div class="right">
-        <h1>Bienvenue {{ session['user']['name'] }} !</h1>
-        <div class="today_list">
-            <h2>Joyeux Anniversaire !</h2>
-            <div>
-                {% for today_birthday in today_birthdays %}
-                    <div>{{ today_birthday.person_name }}</div>
-                    <hr>
-                {% endfor %}
+            </div>
+            <div class="down">
+                <a href="{{ url_for('auth.edit_page') }}">Changer de pseudo</a>
+                <a href="{{ url_for('auth.edit_page') }}">Changer de mot de passe</a>
+                <a href="{{ url_for('auth.delete_account_page') }}">Supprimer le compte</a>
             </div>
         </div>
-        <div class="birthday_list">
-            <h2>Anniversaire que vous avez enregistrer </h2>
-            <form method="post" action="{{ url_for('auth.dashboard_page') }}">
-                <label for="username">
-                    <input type="text" name="username" placeholder="username">
-                </label>
-                <label for="date">
-                    <input type="date" name="date" placeholder="birthday">
-                </label>
-                <input type="submit" value="Ajouter">
-            </form>
-            <div>
-                {% for birthday in birthdays %}
-                    <div>
-                        <div>{{ birthday.person_name }}</div>
-                        <div>{{ birthday.person_birthday }}</div>
+        <div class="right">
+            <h1>Bienvenue {{ session['user']['name'] }} !</h1>
+            <div class="today_list">
+                <h2>Joyeux Anniversaire !</h2>
+                <div>
+                    {% for today_birthday in today_birthdays %}
+                        <div>{{ today_birthday.person_name }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="birthday_list">
+                <h2>Enregistrer un anniversaire</h2>
+                <form method="post" action="{{ url_for('auth.dashboard_page') }}">
+                    <label for="username">
+                        <input type="text" name="username" placeholder="username">
+                    </label>
+                    <label for="date">
+                        <input type="date" name="date" placeholder="birthday">
+                    </label>
+                    <input type="submit" value="Ajouter">
+                </form>
+                <div>
+                    {% for birthday in birthdays %}
+                        <div>
+                            <div>{{ birthday.person_name }}</div>
+                            <div>{{ birthday.person_birthday }}</div>
 
-                        <button data-id="{{ birthday.id }}">Delete</button>
-                        <hr>
-                    </div>
-                {% endfor %}
+                            <button data-id="{{ birthday.id }}">Delete</button>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

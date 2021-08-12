@@ -7,6 +7,20 @@
   display: grid;
   color: colors.$green;
 
+  .left {
+    text-align: right;
+    background: linear-gradient(317.35deg, colors.$blue-400 -0.02%, colors.$blue-400 0%, colors.$blue-300 75%, colors.$green 220%);
+    border-bottom: 2px solid colors.$white;
+    @media (min-width: 1200px) {
+      border-right: 2px solid colors.$white;
+      border-bottom: 0;
+    }
+  }
+
+  .right {
+    background: colors.$blue-300;
+  }
+
   h1 {
     &::selection {
       color: colors.$white;
@@ -50,20 +64,6 @@
   }
 }
 
-.left {
-  text-align: right;
-  background: linear-gradient(317.35deg, colors.$blue-400 -0.02%, colors.$blue-400 0%, colors.$blue-300 75%, colors.$green 220%);
-  border-bottom: 2px solid colors.$white;
-
-  @media (min-width: 1200px) {
-    border-right: 2px solid colors.$white;
-    border-bottom: 0;
-  }
-}
-
-.right {
-  background: colors.$blue-300;
-}
 
 form#birthday_form {
   display: flex;
