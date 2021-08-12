@@ -122,7 +122,7 @@ def dashboard_page() -> Redirect_or_Webpage:
     now: datetime = datetime.now()
 
     today_birthdays = [
-        birthday for birthday in birthdays[:-1]
+        birthday.person_name for birthday in birthdays[:-1]
         if birthday.person_birthday.endswith(f'-{now.month:02}-{now.day:02}')
     ]
 
@@ -131,7 +131,7 @@ def dashboard_page() -> Redirect_or_Webpage:
         birthdays=birthdays,
         today_birthdays=(
             ', '.join(today_birthdays[:-1]) +
-            f'and {birthdays[-1]}' * (len(today_birthdays) > 1)
+            f' and {today_birthdays[-1]}' * (len(today_birthdays) > 1)
         )
     )
 
