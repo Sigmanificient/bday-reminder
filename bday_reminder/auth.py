@@ -31,7 +31,7 @@ auth = Blueprint("auth", __name__)
 def login_page() -> Redirect_or_Webpage:
     """The page for user to authenticate."""
     if session.get('user'):
-        return redirect(url_for('dashboard_page'))
+        return redirect(url_for('auth.dashboard_page'))
 
     if request.method == 'POST':
         username: str = request.form['username']
@@ -50,7 +50,7 @@ def login_page() -> Redirect_or_Webpage:
                     'birthday': login.birthday
                 }
 
-                return redirect(url_for('dashboard_page'))
+                return redirect(url_for('auth.dashboard_page'))
 
     return render_template('auth/login.jinja2')
 
@@ -59,7 +59,7 @@ def login_page() -> Redirect_or_Webpage:
 def register_page() -> Redirect_or_Webpage:
     """A page for user registration."""
     if session.get('user'):
-        return redirect(url_for('dashboard_page'))
+        return redirect(url_for('auth.dashboard_page'))
 
     if request.method == 'POST':
         username: str = request.form['username']
@@ -84,7 +84,7 @@ def register_page() -> Redirect_or_Webpage:
             db.session.commit()
 
             session['user'] = {'name': username}
-            return redirect(url_for('dashboard_page'))
+            return redirect(url_for('auth.dashboard_page'))
 
     return render_template(
         'auth/register.jinja2',
@@ -99,10 +99,10 @@ def dashboard_page() -> Redirect_or_Webpage:
     user: UserDict = session.get('user')
 
     if not user:
-        return redirect(url_for('login_page'))
+        return redirect(url_for('auth.login_page'))
 
     if not user.get('name'):
-        return redirect(url_for('login_page'))
+        return redirect(url_for('auth.login_page'))
 
     if request.method == 'POST':
         username: str = request.form['username']
@@ -122,7 +122,7 @@ def dashboard_page() -> Redirect_or_Webpage:
     now: datetime = datetime.now()
 
     return render_template(
-        'dashboard.jinja2',
+        'auth/dashboard.jinja2',
         birthdays=birthdays,
         today_birthdays=[
             birthday for birthday in birthdays
@@ -139,10 +139,10 @@ def edit_page() -> Redirect_or_Webpage:
     user: UserDict = session.get('user')
 
     if not user:
-        return redirect(url_for('login_page'))
+        return redirect(url_for('auth.login_page'))
 
     if not user.get('name'):
-        return redirect(url_for('login_page'))
+        return redirect(url_for('auth.login_page'))
 
     if request.method == 'POST':
         if request.form.get('new_password'):
@@ -183,10 +183,10 @@ def delete_account_page() -> Redirect_or_Webpage:
     user: UserDict = session.get('user')
 
     if not user:
-        return redirect(url_for('login_page'))
+        return redirect(url_for('auth.login_page'))
 
     if not user.get('name'):
-        return redirect(url_for('login_page'))
+        return redirect(url_for('auth.login_page'))
 
     if (
         request.method == 'POST'
@@ -195,7 +195,7 @@ def delete_account_page() -> Redirect_or_Webpage:
         db.session.delete(User.query.filter_by(pseudo=user.get('name')).first())
         db.session.commit()
 
-        return redirect(url_for('logout'))
+        return redirect(url_for('auth.logout'))
 
     return render_template('auth/delete.jinja2')
 
