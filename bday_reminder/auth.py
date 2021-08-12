@@ -121,15 +121,18 @@ def dashboard_page() -> Redirect_or_Webpage:
     birthdays = Birthday.query.filter_by(user_id=user.get('id')).all()
     now: datetime = datetime.now()
 
+    today_birthdays = [
+        birthday for birthday in birthdays[:-1]
+        if birthday.person_birthday.endswith(f'-{now.month:02}-{now.day:02}')
+    ]
+
     return render_template(
         'auth/dashboard.jinja2',
         birthdays=birthdays,
-        today_birthdays=[
-            birthday for birthday in birthdays
-            if birthday.person_birthday.endswith(
-                f'-{now.month:02}-{now.day:02}'
-            )
-        ]
+        today_birthdays=(
+            ', '.join(today_birthdays[:-1]) +
+            f'and {birthdays[-1]}' * (len(today_birthdays) > 1)
+        )
     )
 
 

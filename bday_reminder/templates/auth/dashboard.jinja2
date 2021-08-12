@@ -26,11 +26,7 @@
             <h1>Bienvenue {{ session['user']['name'] }} !</h1>
             <div class="today_list">
                 <h2>Joyeux Anniversaire !</h2>
-                <div>
-                    {% for today_birthday in today_birthdays %}
-                        <div>{{ today_birthday.person_name }}</div>
-                    {% endfor %}
-                </div>
+                <p>{{ today_birthdays }}</p>
             </div>
             <div class="birthday_list">
                 <h2>Enregistrer un anniversaire</h2>
