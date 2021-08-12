@@ -245,4 +245,4 @@ def logout() -> Redirect:
     if session.get('user'):
         session.pop('user')
 
-    return redirect(url_for('index_page'))
+    return redirect(url_for('views.index_page'))
