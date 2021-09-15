@@ -3,29 +3,34 @@
 {% block title %}Paramètre de profil{% endblock %}
 
 {% block content %}
-    <h1>Paramètres</h1>
-    <h2>Changer votre mot de passe</h2>
-    <form method="POST" action="{{ url_for('auth.edit_page') }}">
-        <label for="old_password">
-            <input type="password" name="old_password" placeholder="Ancien mot de passe">
-        </label>
-        <label for="new_password">
-            <input type="password" name="new_password" placeholder="nouveau mot de passe">
-        </label>
-        <label for="confirm_new_password">
-            <input type="password" name="confirm_new_password" placeholder="confirmer le nouveau mot de passe">
-        </label>
-        <input type="submit" value="Changer">
-    </form>
-
-    <h2>Changer votre pseudo</h2>
-    <form method="POST" action="{{ url_for('auth.edit_page') }}">
-        <label for="new_username">
-            <input type="text" name="new_username" placeholder="nouveau pseudo">
-        </label>
-        <label for="confirm_new_username">
-            <input type="text" name="confirm_new_username" placeholder="confirmer le nouveau pseudo">
-        </label>
-        <input type="submit" value="Changer">
-    </form>
+    <div class="auth">
+        <h1>Paramètres</h1>
+        <div class="mdp">
+            <h2>Changer votre mot de passe</h2>
+            <form method="POST" action="{{ url_for('auth.edit_page') }}">
+                <label for="old_password">
+                    <input type="password" name="old_password" placeholder="Ancien mot de passe">
+                </label>
+                <label for="new_password">
+                    <input type="password" name="new_password" placeholder="nouveau mot de passe">
+                </label>
+                <label for="confirm_new_password">
+                    <input type="password" name="confirm_new_password" placeholder="confirmer le nouveau mot de passe">
+                </label>
+                <input class="btn btn-validate" type="submit" value="Changer">
+            </form>
+        </div>
+        <div class="pseudo">
+            <h2>Changer votre pseudo</h2>
+            <form method="POST" action="{{ url_for('auth.edit_page') }}">
+                <label for="new_username">
+                    <input type="text" name="new_username" placeholder="nouveau pseudo">
+                </label>
+                <label for="confirm_new_username">
+                    <input type="text" name="confirm_new_username" placeholder="confirmer le nouveau pseudo">
+                </label>
+                <input class="btn btn-validate" type="submit" value="Changer">
+            </form>
+        </div>
+    </div>
 {% endblock %}
