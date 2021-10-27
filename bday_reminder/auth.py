@@ -10,7 +10,7 @@ from flask import (
 
 from bday_reminder import db
 from bday_reminder.models import Birthday, User
-from bday_reminder.security import sha512
+from bday_reminder.security import blake2b
 
 USERNAME_PATTERN = r'^([\w\d-]){4,32}$'
 PASSWORD_PATTERN = (
@@ -40,7 +40,7 @@ def login_page() -> Redirect_or_Webpage:
         if username and password:
             login = User.query.filter_by(
                 pseudo=username,
-                password=sha512(password)
+                password=blake2b(password)
             ).first()
 
             if login is not None:
@@ -76,7 +76,7 @@ def register_page() -> Redirect_or_Webpage:
         ):
             new_user = User(
                 pseudo=username,
-                password=sha512(password),
+                password=blake2b(password),
                 birthday=birthday
             )
 
@@ -167,12 +167,12 @@ def edit_page() -> Redirect_or_Webpage:
 
             if (
                 User.query.filter_by(
-                    pseudo=user.get('name'), password=sha512(old_password)
+                    pseudo=user.get('name'), password=blake2b(old_password)
                 ).first()
                     and new_password == confirm_password
             ):
                 user = User.query.filter_by(pseudo=user.get('name')).first()
-                user.password = sha512(new_password)
+                user.password = blake2b(new_password)
                 db.session.commit()
 
         elif request.form.get('new_username'):
