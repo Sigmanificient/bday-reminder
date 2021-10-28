@@ -11,6 +11,7 @@ from flask import (
 from bday_reminder import db
 from bday_reminder.models import Birthday, User
 from bday_reminder.security import blake2b
+from secrets import compare_digest
 
 USERNAME_PATTERN = r'^([\w\d-]){4,32}$'
 PASSWORD_PATTERN = (
@@ -71,7 +72,7 @@ def register_page() -> Redirect_or_Webpage:
             re.match(USERNAME_PATTERN, username)
                 and re.match(PASSWORD_PATTERN, password)
                 and confirm_password
-                and confirm_password == password
+                and compare_digest(confirm_password, password)
                 and birthday
         ):
             new_user = User(
