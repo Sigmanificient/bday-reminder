@@ -4,6 +4,9 @@
 }
 
 body {
+  color: var(--color-text);
+  font-family: Poppins, serif;
+  font-style: normal;
   margin: 0;
 }
 
@@ -15,9 +18,17 @@ body {
 
   &__section {
     display: grid;
-    place-content: center;
+    grid-template-rows: 30% 1fr;
     height: 100%;
     width: 100%;
+
+    &--left {
+      p {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
 
     &--right {
       background: radial-gradient(100% 229.89% at 100% 0%, rgba(50, 78, 240, 0.1) 0%, rgba(55, 45, 253, 0.1) 100%);
@@ -25,8 +36,15 @@ body {
   }
 
   &__content {
-    width: 100%;
-    max-width: 762px;
+    grid-row: 2;
+    min-width: 80%;
+    width: 80%;
     margin: 0 auto;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 72px;
   }
 }
