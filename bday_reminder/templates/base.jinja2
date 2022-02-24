@@ -1,43 +1,46 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="language" content="fr-FR">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="language" content="fr-FR">
 
-    <meta name="description" content="Birthday reminder, un site simple pour vos rappelez des anniversaires de vos amis facilement. Joyeux anniversaire !">
-    <meta name="robots" content="index,follow">
+  <meta name="description"
+        content="Birthday reminder, un site simple pour vos rappelez des anniversaires de vos amis facilement. Joyeux anniversaire !">
+  <meta name="robots" content="index,follow">
 
-    <meta name="geo.region" content="FR"/>
+  <meta name="geo.region" content="FR"/>
 
-     <!-- Open Graph -->
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Notez et rappelez vous des anniversaires de vos amis facilement">
-    <meta property="og:description" content="Birthday reminder, un site simple pour vos rappelez des anniversaires de vos amis facilement. Joyeux anniversaire !">
+  <!-- Open Graph -->
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Notez et rappelez vous des anniversaires de vos amis facilement">
+  <meta property="og:description"
+        content="Birthday reminder, un site simple pour vos rappelez des anniversaires de vos amis facilement. Joyeux anniversaire !">
 
-    <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/style.css">
 
-    <title>Bday reminder | {% block title %}{% endblock %}</title>
+  <title>Bday reminder | {% block title %}{% endblock %}</title>
 </head>
 <body>
 <header>
-    <a class="underline" href="/">Bday Reminder</a>
+  <a class="underline" href="/">Bday Reminder</a>
 
-    <nav class="right-nav">
-        {% if session['user'] %}
-            <a class="underline" href="{{ url_for('auth.dashboard_page') }}">Dashboard</a>
-            <a class="underline" href="{{ url_for('auth.logout') }}">Déconnexion</a>
-        {% else %}
-            <a class="underline" href="{{ url_for('auth.login_page') }}">Connexion</a>
-            <a class="underline" href="{{ url_for('auth.register_page') }}">Inscription</a>
-        {% endif %}
-    </nav>
+  <nav class="right-nav">
+    {% if session['user'] %}
+      <a class="underline" href="{{ url_for('auth.dashboard_page') }}">Dashboard</a>
+      <a class="underline" href="{{ url_for('auth.logout') }}">Déconnexion</a>
+    {% else %}
+      <a class="underline" href="{{ url_for('auth.login_page') }}">Connexion</a>
+      <a class="underline" href="{{ url_for('auth.register_page') }}">Inscription</a>
+    {% endif %}
+  </nav>
 </header>
 
 <main>
-    {% block content %}{% endblock %}
+  {% block content %}{% endblock %}
 </main>
 
 {% block scripts %}{% endblock %}

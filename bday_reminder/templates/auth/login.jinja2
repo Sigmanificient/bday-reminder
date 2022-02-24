@@ -3,23 +3,23 @@
 {% block title %}Connexion{% endblock %}
 
 {% block content %}
-    <div class="auth">
-        <h1>Connexion</h1>
+  <div class="auth">
+    <h1>Connexion</h1>
 
-        <form method="post" action="{{ url_for('auth.login_page') }}">
-            <label for="username">
-                <input type="text" name="username" placeholder="pseudo">
-            </label>
-            <label for="password">
-                <input type="password" name="password"
-                       placeholder="mot de passe">
-            </label>
-            <div class="actions">
-                <input class="btn btn-cancel" type="reset" value="Annuler" accesskey="r">
-                <input class="btn btn-validate" type="submit" value="Connexion">
-            </div>
+    <form method="post" action="{{ url_for('auth.login_page') }}">
+      <label for="username">
+        <input type="text" name="username" placeholder="pseudo">
+      </label>
+      <label for="password">
+        <input type="password" name="password"
+               placeholder="mot de passe">
+      </label>
+      <div class="actions">
+        <input class="btn btn-cancel" type="reset" value="Annuler" accesskey="r">
+        <input class="btn btn-validate" type="submit" value="Connexion">
+      </div>
 
-        </form>
-        <a href="{{ url_for('auth.register_page') }}">Pas de compte ? Créez-en un !</a>
-    </div>
+    </form>
+    <a href="{{ url_for('auth.register_page') }}">Pas de compte ? Créez-en un !</a>
+  </div>
 {% endblock %}

@@ -3,59 +3,59 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block scripts %}
-    <script src="/static/js/delete_birthday.js"></script>
+  <script src="/static/js/delete_birthday.js"></script>
 {% endblock scripts %}
 
 {% block content %}
-    <div class="dashboard">
-        <div class="left">
-            <div class="up">
-                <h2>Compte</h2>
-                <div class="info_compte">
-                    <p>Date d'anniversaire : {{ session['user']['birthday'] }}</p>
-                </div>
+  <div class="dashboard">
+    <div class="left">
+      <div class="up">
+        <h2>Compte</h2>
+        <div class="info_compte">
+          <p>Date d'anniversaire : {{ session['user']['birthday'] }}</p>
+        </div>
 
-            </div>
-            <div class="down">
-                <a href="{{ url_for('auth.edit_page') }}">Changer de pseudo</a>
-                <a href="{{ url_for('auth.edit_page') }}">Changer de mot de passe</a>
-                <a href="{{ url_for('auth.delete_account_page') }}">Supprimer le compte</a>
-            </div>
-        </div>
-        <div class="right">
-            <div class="top">
-                <h1>Bienvenue {{ session['user']['name'] }} !</h1>
-                <p class="count">0 anniversaire souhaité depuis la création du compte 🎉</p>
-                <div class="today_list">
-                    {% if today_birthdays %}
-                        <h2>Joyeux Anniversaire !</h2>
-                        <p>{{ today_birthdays }}</p>
-                    {% else %}
-                        <h2>Pas d'anniversaire aujourd'hui !</h2>
-                    {% endif %}
-                </div>
-                <form method="post" id="add_birthday" action="{{ url_for('auth.dashboard_page') }}">
-                    <h2>Enregistrer un anniversaire</h2>
-                    <label for="username">
-                        <input type="text" name="username" placeholder="username">
-                    </label>
-                    <label for="date">
-                        <input type="date" name="date" placeholder="birthday">
-                    </label>
-                    <input type="submit" class="btn btn-cancel" value="Ajouter">
-                </form>
-            </div>
-            <div class="birthday_list">
-                <div class="scroll_container">
-                    {% for birthday in birthdays %}
-                        <div>
-                            <div>{{ birthday.person_name }}</div>
-                            <div>{{ birthday.person_birthday }}</div>
-                            <button data-id="{{ birthday.id }}">Delete</button>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+      </div>
+      <div class="down">
+        <a href="{{ url_for('auth.edit_page') }}">Changer de pseudo</a>
+        <a href="{{ url_for('auth.edit_page') }}">Changer de mot de passe</a>
+        <a href="{{ url_for('auth.delete_account_page') }}">Supprimer le compte</a>
+      </div>
     </div>
+    <div class="right">
+      <div class="top">
+        <h1>Bienvenue {{ session['user']['name'] }} !</h1>
+        <p class="count">0 anniversaire souhaité depuis la création du compte 🎉</p>
+        <div class="today_list">
+          {% if today_birthdays %}
+            <h2>Joyeux Anniversaire !</h2>
+            <p>{{ today_birthdays }}</p>
+          {% else %}
+            <h2>Pas d'anniversaire aujourd'hui !</h2>
+          {% endif %}
+        </div>
+        <form method="post" id="add_birthday" action="{{ url_for('auth.dashboard_page') }}">
+          <h2>Enregistrer un anniversaire</h2>
+          <label for="username">
+            <input type="text" name="username" placeholder="username">
+          </label>
+          <label for="date">
+            <input type="date" name="date" placeholder="birthday">
+          </label>
+          <input type="submit" class="btn btn-cancel" value="Ajouter">
+        </form>
+      </div>
+      <div class="birthday_list">
+        <div class="scroll_container">
+          {% for birthday in birthdays %}
+            <div>
+              <div>{{ birthday.person_name }}</div>
+              <div>{{ birthday.person_birthday }}</div>
+              <button data-id="{{ birthday.id }}">Delete</button>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

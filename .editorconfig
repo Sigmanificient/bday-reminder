@@ -271,6 +271,9 @@ ij_markdown_min_lines_around_header = 1
 ij_markdown_min_lines_between_paragraphs = 1
 
 [{*.py,*.py.*,*.pyw}]
+indent_size = 4
+indent_style = tab
+tab_width = 4
 ij_python_align_collections_and_comprehensions = true
 ij_python_align_multiline_imports = true
 ij_python_align_multiline_parameters = true

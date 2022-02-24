@@ -3,24 +3,25 @@
 {% block title %}Inscription{% endblock %}
 
 {% block content %}
-    <div class="auth">
-        <h1>Créer votre compte</h1>
+  <div class="auth">
+    <h1>Créer votre compte</h1>
 
-        <form method="post" action="{{ url_for('auth.register_page') }}">
-            <label for="username">
-                <input type="text" name="username" placeholder="pseudo"
-                       pattern="{{ USERNAME_PATTERN }}">
-            </label>
-            <label for="password">
-                <input type="password" name="password" placeholder="mot de passe" pattern="{{ PASSWORD_PATTERN }}">
-                <input type="password" name="confirm_password" placeholder="confirmer le mot de passe" pattern="{{ PASSWORD_PATTERN }}">
-            </label>
-            <label for="date">
-                <input type="date" name="date" placeholder="date de naissance">
-            </label>
-            <div class="actions">
-                <input class="btn btn-validate" type="submit" value="Créer">
-            </div>
-        </form>
-    </div>
+    <form method="post" action="{{ url_for('auth.register_page') }}">
+      <label for="username">
+        <input type="text" name="username" placeholder="pseudo"
+               pattern="{{ USERNAME_PATTERN }}">
+      </label>
+      <label for="password">
+        <input type="password" name="password" placeholder="mot de passe" pattern="{{ PASSWORD_PATTERN }}">
+        <input type="password" name="confirm_password" placeholder="confirmer le mot de passe"
+               pattern="{{ PASSWORD_PATTERN }}">
+      </label>
+      <label for="date">
+        <input type="date" name="date" placeholder="date de naissance">
+      </label>
+      <div class="actions">
+        <input class="btn btn-validate" type="submit" value="Créer">
+      </div>
+    </form>
+  </div>
 {% endblock %}

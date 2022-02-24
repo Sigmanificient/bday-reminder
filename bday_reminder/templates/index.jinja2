@@ -3,87 +3,87 @@
 {% block title %}Notez et rappelez vous des anniversaires de vos amis facilement{% endblock %}
 
 {% block scripts %}
-    <script type="text/javascript" src="/static/js/search_birthday.js"></script>
+  <script type="text/javascript" src="/static/js/search_birthday.js"></script>
 {% endblock %}
 
 {% block content %}
-    <div class="landing">
-        <div class="left">
-            <h1 class="title">
-                Vous <strong>oubliez</strong> souvent les
-                <strong>anniversaires</strong> de vos <strong>potes</strong>?
-            </h1>
+  <div class="landing">
+    <div class="left">
+      <h1 class="title">
+        Vous <strong>oubliez</strong> souvent les
+        <strong>anniversaires</strong> de vos <strong>potes</strong>?
+      </h1>
 
-            <h2>Ne les oubliez plus avec <br> <strong>Bday Reminder</strong>
-            </h2>
+      <h2>Ne les oubliez plus avec <br> <strong>Bday Reminder</strong>
+      </h2>
 
-            <section class="wrapper">
-                <a class="btn btn-info" href="#description">En savoir plus</a>
-            </section>
-        </div>
-        <div class="right">
-            <h1 class="search">
-                <strong>Recherchez</strong> une date d'anniversaire
-            </h1>
-            <p>
-                <em>Marche uniquement avec les utilisateurs enregistrés sur le site</em>
-            </p>
-            <form id='birthday_form'>
-                <input id="search" type="text" name="search" placeholder="Entrez un nom">
-                <input type="submit" value="Rechercher">
-            </form>
-        </div>
+      <section class="wrapper">
+        <a class="btn btn-info" href="#description">En savoir plus</a>
+      </section>
     </div>
+    <div class="right">
+      <h1 class="search">
+        <strong>Recherchez</strong> une date d'anniversaire
+      </h1>
+      <p>
+        <em>Marche uniquement avec les utilisateurs enregistrés sur le site</em>
+      </p>
+      <form id='birthday_form'>
+        <input id="search" type="text" name="search" placeholder="Entrez un nom">
+        <input type="submit" value="Rechercher">
+      </form>
+    </div>
+  </div>
 
-    <section id="description">
-        <h1>Qu'est-ce que <strong>Bday Reminder</strong>?</h1>
-        <p>
-            On a tous se pote qui s'amuse à noter les dates d'anniversaires
-            de ses proches sur un bloc-notes et qui oublie forcément de le mettre à jour au bout d’un moment pas vrai ?
-        </p>
-        <p>
-            Et bien c’est exactement sur ce point que Bday Reminder agit, en vous proposant un site permettant
-            d’enregistrer les dates de naissance de vos proches. Ainsi, fini les oublies d’anniversaires ou les
-            blocs-notes
-            trop longs !
-        </p>
-        <p>
-            Plus sérieusement, Bday Reminder est un projet entièrement français, développer bénévolement par deux
-            jeunes voulant se perfectionner dans le développement web. Au départ le projet n’était pas destiné à être
-            dévoilé
-            au grand public. Au fil du développement il s’est avéré que le projet avait un bon potentiel et il a donc
-            été
-            décidé qu’il soit publié afin que tout le monde puisse y avoir accès librement.
-        </p>
-        <p>
-            Dans l’état actuel du projet, nous avons décidé de sortir une première version moins complète que ce qui
-            était prévu afin de pouvoir avoir un premier retour sur les fonctionnalités de base que propose le site.
-            Vous êtes donc actuellement sur ce qu’on pourrait appeler la V1 de notre projet c’est cool non ? :D
-        </p>
-        <p>
-            Qui dit V1 veut surement dire V2 n’est-ce pas ? Et bien oui ! Il est déjà prévu que différentes
-            fonctionnalités puissent être ajoutées si le projet est activement soutenu. Et comme nous nous soucions de
-            l’avis de nos utilisateurs, nous vous recommandons chaudement de nous faire des retours afin que nous
-            puissions améliorer le mieux possible le projet.
-        </p>
-        <p>
-            En espérant que le projet vous plaît ! :D <br> Corentin, co-développeur du projet.
-        </p>
+  <section id="description">
+    <h1>Qu'est-ce que <strong>Bday Reminder</strong>?</h1>
+    <p>
+      On a tous se pote qui s'amuse à noter les dates d'anniversaires
+      de ses proches sur un bloc-notes et qui oublie forcément de le mettre à jour au bout d’un moment pas vrai ?
+    </p>
+    <p>
+      Et bien c’est exactement sur ce point que Bday Reminder agit, en vous proposant un site permettant
+      d’enregistrer les dates de naissance de vos proches. Ainsi, fini les oublies d’anniversaires ou les
+      blocs-notes
+      trop longs !
+    </p>
+    <p>
+      Plus sérieusement, Bday Reminder est un projet entièrement français, développer bénévolement par deux
+      jeunes voulant se perfectionner dans le développement web. Au départ le projet n’était pas destiné à être
+      dévoilé
+      au grand public. Au fil du développement il s’est avéré que le projet avait un bon potentiel et il a donc
+      été
+      décidé qu’il soit publié afin que tout le monde puisse y avoir accès librement.
+    </p>
+    <p>
+      Dans l’état actuel du projet, nous avons décidé de sortir une première version moins complète que ce qui
+      était prévu afin de pouvoir avoir un premier retour sur les fonctionnalités de base que propose le site.
+      Vous êtes donc actuellement sur ce qu’on pourrait appeler la V1 de notre projet c’est cool non ? :D
+    </p>
+    <p>
+      Qui dit V1 veut surement dire V2 n’est-ce pas ? Et bien oui ! Il est déjà prévu que différentes
+      fonctionnalités puissent être ajoutées si le projet est activement soutenu. Et comme nous nous soucions de
+      l’avis de nos utilisateurs, nous vous recommandons chaudement de nous faire des retours afin que nous
+      puissions améliorer le mieux possible le projet.
+    </p>
+    <p>
+      En espérant que le projet vous plaît ! :D <br> Corentin, co-développeur du projet.
+    </p>
+  </section>
+
+  <footer>
+    <a href="{{ url_for('views.legal_page') }}">Mentions légales</a>
+
+    <section class="authors">
+      <p>
+        By <a class="github" href="https://github.com/Corentin384">Coco</a>
+        & <a class="github" href="https://github.com/Sigmanificient">Sigmanificient</a>
+      </p>
+
+      <a class="github turn" href="https://github.com/Corentin384/bday-reminder">
+        <img height="32px" width="32px" src="../static/svg/github_icon.svg" alt="Github repository">
+      </a>
     </section>
-
-    <footer>
-        <a href="{{ url_for('views.legal_page') }}">Mentions légales</a>
-
-        <section class="authors">
-            <p>
-                By <a class="github" href="https://github.com/Corentin384">Coco</a>
-                & <a class="github" href="https://github.com/Sigmanificient">Sigmanificient</a>
-            </p>
-
-            <a class="github turn" href="https://github.com/Corentin384/bday-reminder">
-                <img height="32px" width="32px" src="../static/svg/github_icon.svg" alt="Github repository">
-            </a>
-        </section>
-    </footer>
+  </footer>
 
 {% endblock %}

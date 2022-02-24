@@ -3,14 +3,14 @@
 {% block title %}Suppression du profil{% endblock %}
 
 {% block content %}
-    <div class="auth">
-        <h1>Supprimer votre compte</h1>
+  <div class="auth">
+    <h1>Supprimer votre compte</h1>
 
     <form method="post" action="{{ url_for('auth.delete_account_page') }}">
-        <label for="account_name">
-            <input type="text" name="account_name" placeholder="confirmer le nom de votre compte">
-        </label>
-        <input class="btn btn-validate" type="submit">
+      <label for="account_name">
+        <input type="text" name="account_name" placeholder="confirmer le nom de votre compte">
+      </label>
+      <input class="btn btn-validate" type="submit">
     </form>
-    </div>
+  </div>
 {% endblock %}
