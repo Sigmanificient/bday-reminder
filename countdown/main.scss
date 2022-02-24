@@ -1,3 +1,32 @@
+:root {
+  --color-text: #283747;
+  --color-accent: #324EF0;
+}
+
 body {
   margin: 0;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  height: 100vh;
+
+  &__section {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    width: 100%;
+
+    &--right {
+      background: radial-gradient(100% 229.89% at 100% 0%, rgba(50, 78, 240, 0.1) 0%, rgba(55, 45, 253, 0.1) 100%);
+    }
+  }
+
+  &__content {
+    width: 100%;
+    max-width: 762px;
+    margin: 0 auto;
+  }
 }
