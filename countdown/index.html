@@ -30,40 +30,67 @@
 <main class="main">
   <section class="main__section main__section--left">
     <div class="main__content">
-      <h1 class="main__title">Lorem Ipsum dolor sit amat.</h1>
+      <h1 class="main__title">Lancement dans :</h1>
       <ul class="countdown">
         <li class="countdown__item">
-          <span class="countdown__item__number">3</span>
+          <span class="countdown__item__number" id="days">00</span>
           <span class="countdown__item__label">Jours</span>
         </li>
         <li class="countdown__item">
-          <span class="countdown__item__number">10</span>
+          <span class="countdown__item__number" id="hours">00</span>
           <span class="countdown__item__label">Heures</span>
         </li>
         <li class="countdown__item">
-          <span class="countdown__item__number">31</span>
+          <span class="countdown__item__number" id="minutes">00</span>
           <span class="countdown__item__label">Minutes</span>
         </li>
         <li class="countdown__item">
-          <span class="countdown__item__number">38</span>
+          <span class="countdown__item__number" id="seconds">00</span>
           <span class="countdown__item__label">Secondes</span>
         </li>
       </ul>
-      <a href="#" class="btn">En savoir plus</a>
+      <a href="https://github.com/Sigmanificient/bday-reminder" class="btn">En savoir plus</a>
     </div>
+    <script>
+      let countDownDate = new Date("March 2, 2022 19:00:00").getTime();
+      let x = setInterval(function(){
+                let now = new Date().getTime();
+                let distance = countDownDate - now;
+
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+
+                if(distance < 0){
+                    clearInterval(x);
+                    document.getElementById("days").innerHTML = "00";
+                    document.getElementById("hours").innerHTML = "00";
+                    document.getElementById("minutes").innerHTML = "00";
+                    document.getElementById("seconds").innerHTML = "00";
+
+                }
+            },1000);
+        </script>
   </section>
   <section class="main__section main__section--right">
     <div class="main__content">
       <h1 class="main__title">Qu'est-ce que Bday Reminder?</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti eum fugiat modi nihil nulla
-        tempora! Eos porro reiciendis sint.
+        Avec Bday-reminder, n'oubliez plus les anniversaires de vos potes !
       </p>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam assumenda consequatur delectus deserunt
-        dignissimos dolor dolore doloribus eius eveniet explicabo hic laboriosam maxime neque nesciunt nulla officia
-        pariatur placeat possimus, praesentium quas repellendus sint tempore temporibus tenetur totam unde vel vitae
-        voluptatem voluptatibus? Fugiat iste nisi porro provident sapiente.
+        Bday Reminder est un projet entièrement français, développer bénévolement par deux
+      jeunes voulant se perfectionner dans le développement web. Au départ le projet n’était pas destiné à être
+      dévoilé
+      au grand public. Au fil du développement il s’est avéré que le projet avait un bon potentiel et il a donc
+      été
+      décidé qu’il soit publié afin que tout le monde puisse y avoir accès librement.
       </p>
     </div>
   </section>
