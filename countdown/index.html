@@ -30,7 +30,7 @@
 <main class="main">
   <section class="main__section main__section--left">
     <div class="main__content">
-      <h1 class="main__title">Lancement dans :</h1>
+      <h1 class="main__title">Lancement dans</h1>
       <ul class="countdown">
         <li class="countdown__item">
           <span class="countdown__item__number" id="days">00</span>
@@ -51,39 +51,10 @@
       </ul>
       <a href="https://github.com/Sigmanificient/bday-reminder" class="btn">En savoir plus</a>
     </div>
-    <script defer>
-      window.onload = () => {
-        const countDownDate = new Date("March 2, 2022 19:00:00").getTime();
-        const cdElmnts = {
-          'days': document.getElementById("days"),
-          'hours': document.getElementById("hours"),
-          'minutes': document.getElementById("minutes"),
-          'seconds': document.getElementById("seconds")
-        }
-
-        const x = setInterval(() => {
-          let now = new Date().getTime();
-          let distance = countDownDate - now;
-
-          cdElmnts['days'].innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
-          cdElmnts['hours'].innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          cdElmnts['minutes'].innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          cdElmnts['seconds'].innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
-
-          if(distance >= 0)return
-
-          clearInterval(x);
-          cdElmnts['days'].innerHTML = "00";
-          cdElmnts['hours'].innerHTML = "00";
-          cdElmnts['minutes'].innerHTML = "00";
-          cdElmnts['seconds'].innerHTML = "00";
-        }, 1000);
-      }
-    </script>
   </section>
   <section class="main__section main__section--right">
     <div class="main__content">
-      <h1 class="main__title">Qu'est-ce que Bday Reminder?</h1>
+      <h1 class="main__title">Qu'est-ce que <span class="main__title__wordmark">Bday Reminder</span>?</h1>
       <p>
         Avec Bday-reminder, n'oubliez plus les anniversaires de vos potes !
       </p>
@@ -98,5 +69,34 @@
     </div>
   </section>
 </main>
+<script defer>
+  window.onload = () => {
+    const countDownDate = new Date("March 2, 2022 19:00:00").getTime();
+    const cdElmnts = {
+      'days': document.getElementById("days"),
+      'hours': document.getElementById("hours"),
+      'minutes': document.getElementById("minutes"),
+      'seconds': document.getElementById("seconds")
+    }
+
+    const x = setInterval(() => {
+      let now = new Date().getTime();
+      let distance = countDownDate - now;
+
+      cdElmnts['days'].innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+      cdElmnts['hours'].innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      cdElmnts['minutes'].innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      cdElmnts['seconds'].innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if(distance >= 0)return
+
+      clearInterval(x);
+      cdElmnts['days'].innerHTML = "00";
+      cdElmnts['hours'].innerHTML = "00";
+      cdElmnts['minutes'].innerHTML = "00";
+      cdElmnts['seconds'].innerHTML = "00";
+    }, 1000);
+  }
+</script>
 </body>
 </html>

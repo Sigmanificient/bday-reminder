@@ -44,8 +44,13 @@ body {
 
   &__title {
     font-weight: bold;
-    font-size: 48px;
-    line-height: 72px;
+    font-size: 40px;
+    line-height: 64px;
+
+
+    &__wordmark {
+      color: var(--color-accent);
+    }
   }
 }
 
