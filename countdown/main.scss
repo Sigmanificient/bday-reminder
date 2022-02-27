@@ -8,6 +8,11 @@ body {
   font-family: Poppins, serif;
   font-style: normal;
   margin: 0;
+
+  *::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
 }
 
 .main {
@@ -61,6 +66,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  user-select: none;
   list-style: none;
   margin: 0 0 8%;
   padding: 0;
@@ -90,6 +96,7 @@ body {
   outline: 2px solid var(--color-text);
   padding: 12px 30px;
   border-radius: 8px;
+  user-select: none;
 }
 
 @media screen and (max-height: 620px) {
