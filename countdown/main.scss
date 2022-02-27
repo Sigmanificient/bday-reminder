@@ -102,7 +102,7 @@ body {
 @media screen and (max-height: 620px) {
   .main {
     &__section {
-      grid-template-rows: 0px 1fr;
+      grid-template-rows: 1px 1fr;
     }
 
     &__content {
@@ -122,14 +122,72 @@ body {
     display: flex;
     flex-direction: column;
 
-    &_content {
-      grid-row: 1;
+    &__content {
+      place-self: center;
+
     }
 
     &__section {
       display: grid;
-      grid-template-rows: 1fr;
+      grid-template-rows: 0 1fr;
       padding-block: 40px;
     }
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .main {
+    &__title {
+      font-size: 32px;
+      line-height: 48px;
+    }
+  }
+
+  .countdown {
+    &__item {
+      &__number {
+        font-size: 48px;
+        line-height: 72px;
+      }
+
+      &__label {
+        font-size: 24px;
+        line-height: 32px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .main {
+    &__title {
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    &__content p {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+
+  .countdown {
+    &__item {
+      &__number {
+        font-size: 24px;
+        line-height: 42px;
+      }
+
+      &__label {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  .btn {
+    padding: 8px 20px;
+    font-size: 12px;
   }
 }
