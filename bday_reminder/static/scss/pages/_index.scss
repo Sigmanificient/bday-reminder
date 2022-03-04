@@ -81,6 +81,7 @@ form#birthday_form {
     height: 100%;
 
     &#search {
+      border: none;
       background: transparent;
       color: colors.$white;
       padding: 0 20px;
@@ -92,6 +93,7 @@ form#birthday_form {
     }
 
     &[type="submit"] {
+      background: colors.$white;
       position: absolute;
       top: 0; right: 0; bottom: 0;
       color: colors.$blue-400;
