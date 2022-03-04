@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Dict, Union
 
 from flask import (
-	Blueprint, render_template, request, redirect, session, url_for, Response
+	Blueprint, render_template, request, redirect, session, url_for, Response, escape
 )
 
 from bday_reminder import db
@@ -96,7 +96,7 @@ def register_page() -> Redirect_or_Webpage:
 
 @auth.route('/dashboard', methods=('GET', 'POST'))
 def dashboard_page() -> Redirect_or_Webpage:
-	"""The main webapp dashboard page very every features."""
+	"""The main webapp dashboard page very every feature."""
 	user: UserDict = session.get('user')
 
 	if not user:
@@ -111,7 +111,7 @@ def dashboard_page() -> Redirect_or_Webpage:
 
 		if username and date:
 			new_birthday = Birthday(
-				person_name=username,
+				person_name=escape(username),
 				person_birthday=date,
 				user_id=user.get('id')
 			)
