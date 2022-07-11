@@ -8,3 +8,43 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/corentin384/bday-reminder)
 
 A Flask based application for birthday saving.
+
+
+# Installation
+
+Clone the repository
+```bash
+git clone https://github.com/Sigmanificient/bday-reminder.git
+```
+
+*If you are on GNU/Linux, you can use the makefile configuration*
+```bash
+make
+```
+
+Otherwise, you must install the dependencies manually.
+
+- Install a python virtualenv (optional)
+```bash
+python -m venv venv
+# Activate the virtualenv
+```
+
+- Install the bday_reminder package as editable
+```bash
+pip install -e .
+```
+- Install Sass cli tool
+```bash
+yarn install
+```
+
+- Build the static files
+```bash
+sass --style compressed bday_reminder/static/scss/style.scss:bday_reminder/static/css/style.css
+```
+
+- Run the application
+```bash
+python bday_reminder
+```
