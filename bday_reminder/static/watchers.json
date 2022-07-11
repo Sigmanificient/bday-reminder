@@ -1,7 +1,0 @@
-{
-  "SCSS": {
-    "program": "scss",
-    "arguments": "$FileName$:$FileParentDir$/css/$FileNameWithoutExtension$.css  --style compressed",
-    "output paths to refresh": "$FileParentDir$/css/$FileNameWithoutExtension$.css:$FileNameWithoutExtension$.css.map"
-  }
-}
