@@ -48,3 +48,16 @@ sass --style compressed bday_reminder/static/scss/style.scss:bday_reminder/stati
 ```bash
 python bday_reminder
 ```
+
+## Create the user
+
+  
+```bash
+make user
+```
+
+Or manually:
+
+```bash
+python scripts/dummy.py
+```
