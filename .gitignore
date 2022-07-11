@@ -5,9 +5,15 @@
 __pycache__
 venv
 
+# Packaging
+*.egg-info
+
 # CSS files
 *.css
 *.css.*
 
 # Database
 *.db
+
+# Node modules
+node_modules
