@@ -2,6 +2,8 @@ VENV = venv
 VBIN = $(VENV)/bin
 PKG = bday_reminder
 
+NMBIN = node_modules/.bin
+
 all: start
 
 clean:
@@ -19,15 +21,17 @@ $(VBIN)/python:
 	chmod +x venv/bin/activate
 	./venv/bin/activate
 
-node_modules:
+$(NMBIN)/sass:
 	yarn install
 
-$(PKG)/static/css/style.css: node_modules
-	sass --style compressed $(PKG)/static/scss/style.scss:$(PKG)/static/css/style.css
+$(PKG)/static/css/style.css: $(NMBIN)/sass
+	$(NMBIN)/sass --style compressed $(PKG)/static/scss/style.scss:$(PKG)/static/css/style.css
 
 start: $(VBIN)/python $(PKG)/static/css/style.css
-	pip install -e .
-	python $(PKG)
+	$(VBIN)/pip install -e .
+	$(VBIN)/python $(PKG)
 
+user: $(VBIN)/python
+	$(VBIN)/python scripts/dummy.py
 
-.PHONY: all clean start
+.PHONY: all clean start user
